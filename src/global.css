@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --main-color: #3765EF;
+}
+
+w3m-core-button {
+  --w3m-accent-color: #3765EF;
+  transform: scale(0.8) translateX(10%);
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+  background: #1b293e;
+  color: #fff;
+}
