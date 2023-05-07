@@ -8,16 +8,20 @@
     "@mui/material": "^5.12.3",
     "@web3modal/ethereum": "^2.3.7",
     "@web3modal/react": "^2.3.7",
+    "craco": "^0.0.3",
     "ethers": "^5.7.2",
+    "linkify-html": "^4.1.1",
+    "linkifyjs": "^4.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.1",
+    "underscore": "^1.13.6",
     "wagmi": "^0.12.13"
   },
   "scripts": {
-    "start": "GENERATE_SOURCEMAP=false react-scripts start",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build",
-    "test": "react-scripts test",
+    "start": "GENERATE_SOURCEMAP=false craco start",
+    "build": "GENERATE_SOURCEMAP=false craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "browserslist": {
@@ -35,6 +39,8 @@
   "devDependencies": {
     "@types/react": "^18.2.5",
     "@types/react-dom": "^18.2.4",
+    "@types/underscore": "^1.11.4",
+    "craco-alias": "^3.0.1",
     "react-scripts": "^5.0.1",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.4"
