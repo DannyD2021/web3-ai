@@ -8,6 +8,7 @@
     "@mui/material": "^5.12.3",
     "@web3modal/ethereum": "^2.3.7",
     "@web3modal/react": "^2.3.7",
+    "axios": "^1.4.0",
     "craco": "^0.0.3",
     "ethers": "^5.7.2",
     "linkify-html": "^4.1.1",

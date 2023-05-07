@@ -5,6 +5,8 @@ import ChatLines from "./ChatLines";
 // import { ChatGPTApi } from "metabase/services";
 import _ from 'underscore'
 import { scrollIntoViewById } from "@/utils";
+import { SendIcon, MenuIcon } from "@/components/icons";
+
 
 export interface MessageType {
   who: string;
@@ -12,43 +14,68 @@ export interface MessageType {
     content?: string;
     chartIds?: number[];
     sql?: string;
+    recommends?: any[],
   };
+  key?: string | number,
 }
 
 const initialChats: MessageType[] = [
   {
-    who: "bot",
+    who: "ai",
     message: {
-      content:
-        `Hi, I am Web3 Analytics Events AI, feel free to ask me anything about HK Web3 events.\n你好，你可以直接用中文提问关于香港Web3活动的信息`,
+      content: `Hi, I am Web3 Analytics Events AI, feel free to ask me anything about HK Web3 events.\n你好，你可以直接用中文提问关于香港Web3活动的信息`,
+      recommends: [`tripe tackles 'cold start problem' with the launch of fiat-to-crypto onramp`, `tripe tackles 'cold start problem' with the launch of fiat-to-crypto onramp`, `tripe tackles 'cold start problem' with the launch of fiat-to-crypto onramp`],
+    },
+  },
+  {
+    who: "user",
+    message: {
+      content: `Greetings, my name is M2. I am a professional artificial assistant with extensive knowledge and real-time updates in digital finance. `,
     },
   },
 ];
+
 
 const ChatContainer = styled.div`
   height: calc(100% - 80px);
   padding-bottom: 40px;
 `;
 
-const InputBlock = styled.div`
+const InputContainer = styled.div`
   width: 100vw;
   display: flex;
   padding: 15px;
-  align-items: flex-end;
   position: absolute;
   bottom: 0;
   gap: 5px;
   text-align: center;
   left: 50%;
   transform: translate(-50%, 0);
-  background-color: #fafafa;
-  border-top: 1px solid #d9d9d9;
+  background-color: #1b293e;
 `;
 
-const ChatButton = styled(Button)`
-  background-color: #fa8c16 !important;
-  border-color: #ffa940 !important;
+const InputBlock = styled.div`
+  height: 56px;
+  background-image: url('/chat-input-bg.png');
+  background-size:100% 100%;
+  padding: 10px;
+  flex: 1;
+  display: flex;
+  align-items: center;
 `;
+
+const TextInput = styled.input`
+  color: #fff;
+  height: 32px;
+  margin-left: 5px;
+  background: none;
+  outline: none;
+  border: none;
+  caret-color: #31499b;
+  flex: 1;
+`;
+
+
 
 const Chat = ({ setStartChat }: any) => {
   const [chatMessages, setChatMessages] = useState(initialChats);
@@ -92,27 +119,24 @@ const Chat = ({ setStartChat }: any) => {
   return (
     <ChatContainer>
       <ChatLines chatMsgs={chatMessages} loading={loading}/>
-      <InputBlock>
-        <TextField
-          placeholder="Input a message to start the conversation"
-          value={inputMsg}
-          onChange={(e: any) => {
-            setInputMsg(e.target.value);
-          }}
-          // onPressEnter={(e: any) => {
-          //   sendMessage(inputMsg);
-          // }}
-        />
-        <Button onClick={clearChat}>Clear</Button>
-        <ChatButton
-          color="primary"
-          onClick={(e: any) => {
+      <InputContainer>
+        <InputBlock>
+          <MenuIcon/>
+          <TextInput
+            placeholder="Input a message..."
+            value={inputMsg}
+            onChange={(e: any) => {
+              setInputMsg(e.target.value);
+            }}
+            // onPressEnter={(e: any) => {
+            //   sendMessage(inputMsg);
+            // }}
+          />
+        </InputBlock>
+        <SendIcon onClick={(e: any) => {
             sendMessage(inputMsg);
-          }}
-        >
-          Send
-        </ChatButton>
-      </InputBlock>
+        }}/>
+      </InputContainer>
     </ChatContainer>
   );
 };
