@@ -13,7 +13,6 @@ export interface MessageType {
     content?: string;
     chartIds?: number[];
     sql?: string;
-    recommends?: any[],
   };
   loading?: boolean
 }
@@ -22,8 +21,7 @@ const initialChats: MessageType[] = [
   {
     who: "ai",
     message: {
-      content: `Hi, I am Web3 Analytics Events AI, feel free to ask me anything about HK Web3 events.\n你好，你可以直接用中文提问关于香港Web3活动的信息`,
-      recommends: [`tripe tackles 'cold start problem' with the launch of fiat-to-crypto onramp`, `tripe tackles 'cold start problem' with the launch of fiat-to-crypto onramp`, `tripe tackles 'cold start problem' with the launch of fiat-to-crypto onramp`],
+      content: `Hi, I'm Web3 Analytics AI, your Web3 assistant. Feel free to ask me anything about Web3 & Crypto market.`,
     },
   },
 ];
