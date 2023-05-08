@@ -37,7 +37,7 @@ export default function Layout() {
     <AppContainer>
       <WagmiConfig client={wagmiClient}>
         <HeaderContainer className="flex justify-between">
-          <img src='/logo.svg' />
+          <img src='./logo.svg' />
           <Web3Button />
         </HeaderContainer>
       </WagmiConfig>

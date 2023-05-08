@@ -17,7 +17,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.1",
     "underscore": "^1.13.6",
-    "wagmi": "^0.12.13"
+    "wagmi": "0.12.12"
   },
   "scripts": {
     "start": "GENERATE_SOURCEMAP=false craco start",

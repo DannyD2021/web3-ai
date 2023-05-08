@@ -49,7 +49,7 @@ const InputContainer = styled.div`
 
 const InputBlock = styled.div`
   height: 56px;
-  background-image: url('/chat-input-bg.png');
+  background-image: url('./chat-input-bg.png');
   background-size:100% 100%;
   padding: 10px;
   flex: 1;
@@ -93,7 +93,7 @@ const Chat = () => {
   }, 500);
   return (
     <ChatContainer>
-      <ChatLines chatMsgs={chatMessages} />
+      <ChatLines chatMsgs={chatMessages} sendMessage={sendMessage}/>
       <InputContainer>
         <InputBlock>
           <MenuIcon />
