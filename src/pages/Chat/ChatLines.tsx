@@ -10,6 +10,7 @@ import {
   ChatAnswerContainer,
   ChatContent,
   RecommendsContainer,
+  ChartIframe,
  } from './ChatLInes.styles';
  import { MessageType } from "./index";
 
@@ -25,10 +26,9 @@ const ChatConfig: any = {
 };
 
 
-
 const MsgBlock = ({ msg, id } : { msg: MessageType, id: string }) => {
   const { who, message, loading } = msg || {};
-  const { content, sql, chartIds } = message || {};
+  const { content, sql, chartIds = [224,444] } = message || {};
   const className = ChatConfig[who].className;
   return (
     <ContentBlock className={className} id={id}>
@@ -38,6 +38,7 @@ const MsgBlock = ({ msg, id } : { msg: MessageType, id: string }) => {
       <ChatAnswerContainer className={className}>
         {content && <ChatContent dangerouslySetInnerHTML={{ __html: convertNewLines(content) }} />}
         {loading && <DotLoading text="W3AI is thinking"/>}
+        {chartIds?.length && <ChartIframe height={chartIds.length*450+0.5} src={`//test.3analytics.ai/public/charts?chart_ids=${chartIds.join(',')}`}/> }
       </ChatAnswerContainer>
     </ContentBlock>
   )

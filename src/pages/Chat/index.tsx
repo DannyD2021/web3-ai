@@ -34,6 +34,7 @@ const ChatContainer = styled.div`
 
 const InputContainer = styled.div`
   width: 100vw;
+  max-width: 800px;
   display: flex;
   padding: 15px;
   position: absolute;

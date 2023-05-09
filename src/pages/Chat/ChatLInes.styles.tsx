@@ -63,7 +63,7 @@ export const ChatAnswerContainer = styled.div`
 `;
 
 export const ChatContent = styled.div`
-  word-break: break-all;
+  word-break: break;
 `;
 
 export const RecommendsContainer = styled.div`
@@ -80,3 +80,9 @@ export const RecommendsContainer = styled.div`
     cursor: pointer;
   }
 `
+
+export const ChartIframe = styled.iframe`
+  margin-top: 10px;
+  border-top: 0.5px solid rgba(118, 134, 171, 0.5);
+  background: #2b374c;
+`;
