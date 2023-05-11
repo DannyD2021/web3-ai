@@ -74,6 +74,7 @@ const Chat = () => {
   const [inputMsg, setInputMsg] = useState("");
 
   const sendMessage = _.debounce(async (msg: any) => {
+    if (!msg) return;
     const newChatMsg = [
       ...chatMessages,
       { message: { content: msg }, who: "user" },
