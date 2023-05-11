@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactEventHandler, useEffect, useState } from "react";
 import styled from '@emotion/styled';
 import ChatLines from "./ChatLines";
 import apis from "@/apis";
@@ -80,7 +80,7 @@ const Chat = () => {
     ];
     setChatMessages(newChatMsg.concat({ who: "ai", loading: true }));
     scrollIntoViewById(`chat-${newChatMsg.length}`)
-    const chatAnswer: any = await apis.chat({ content: msg });
+    const chatAnswer: any = await apis.chat({ content: msg }).then(res => res.data);
     setChatMessages([
       ...newChatMsg,
       {
@@ -90,6 +90,12 @@ const Chat = () => {
     ]);
     setInputMsg("");
   }, 500);
+
+  const handleKeyDown = (event: any) => {
+    if (event.key === 'Enter') {
+      sendMessage(inputMsg);
+    }
+  }
   return (
     <ChatContainer>
       <ChatLines chatMsgs={chatMessages} sendMessage={sendMessage}/>
@@ -102,9 +108,7 @@ const Chat = () => {
             onChange={(e: any) => {
               setInputMsg(e.target.value);
             }}
-          // onPressEnter={(e: any) => {
-          //   sendMessage(inputMsg);
-          // }}
+            onKeyDown={handleKeyDown}
           />
         </InputBlock>
         <span onClick={(e: any) => {

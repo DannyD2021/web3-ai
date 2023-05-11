@@ -75,6 +75,7 @@ instance.interceptors.response.use(
       // @ts-ignore
       errorFormat.selfCancel = true
     }
+    console.log('errroe: ', error)
     return Promise.reject(errorFormat)
   },
 )

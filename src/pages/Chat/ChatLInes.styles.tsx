@@ -64,6 +64,7 @@ export const ChatAnswerContainer = styled.div`
 
 export const ChatContent = styled.div`
   word-break: break;
+  word-wrap: break-word;
 `;
 
 export const RecommendsContainer = styled.div`

@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     '/gw/',
     createProxyMiddleware({
-      target: 'https://test-ai.3analytics.io/',
+      target: 'https://chat.test.3analytics.ai',
       changeOrigin: true,
     //   pathRewrite: {
     //     '^/app/': '/',
