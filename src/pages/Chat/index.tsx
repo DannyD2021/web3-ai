@@ -13,6 +13,7 @@ export interface MessageType {
     content?: string;
     chartIds?: number[];
     sql?: string;
+    messageId?: number;
   };
   loading?: boolean
 }

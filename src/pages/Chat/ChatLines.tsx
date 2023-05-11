@@ -49,15 +49,34 @@ const ThumbsBlock = styled.span`
   .icon {
     font-size: 1.25rem;
     color: rgba(118, 134, 171, 0.5);
+
+    &.actived {
+      color: #3765EF;
+    }
   }
 `
 
 
 const MsgBlock = ({ msg, id } : { msg: MessageType, id: number }) => {
   const { who, message, loading } = msg || {};
-  const { content, sql, chartIds = [] } = message || {};
+  const { content, messageId, chartIds = [] } = message || {};
   const className = ChatConfig[who].className;
   const showThumbs = id > 1 && who === 'ai' && !loading;
+  const [thumbs, setThumbs] = useState({
+    thumbDown: false,
+    thumbUp: false,
+  });
+  const onThumbs = (attitude: number) => {
+    apis.attitude({
+      id: messageId,
+      attitude
+    }).then(() => {
+      setThumbs({
+        thumbDown: attitude === 0,
+        thumbUp: attitude === 1,
+      })
+    })
+  }
   return (
     <ContentBlock className={className} id={`chat-${id}`}>
       <ChatLabel className={className}>
@@ -69,9 +88,9 @@ const MsgBlock = ({ msg, id } : { msg: MessageType, id: number }) => {
         {chartIds?.length > 0 && <ChartIframe height={chartIds.length*450+0.5} src={`${ANALYTICS_HOST}/public/charts?chart_ids=${chartIds.join(',')}`}/> }
         {showThumbs &&  (
           <ThumbsContainer>
-          <ThumbsBlock><ThumbDownAltIcon className="icon"/></ThumbsBlock>
-          <ThumbsBlock><ThumbUpAltIcon className="icon"/></ThumbsBlock>
-        </ThumbsContainer>
+            <ThumbsBlock onClick={() => onThumbs(1)}><ThumbDownAltIcon className={`icon ${thumbs.thumbDown ? 'actived' : ''}`}/></ThumbsBlock>
+            <ThumbsBlock onClick={() => onThumbs(0)}><ThumbUpAltIcon className={`icon ${thumbs.thumbUp ? 'actived' : ''}`}/></ThumbsBlock>
+          </ThumbsContainer>
         )}
       </ChatAnswerContainer>
     </ContentBlock>
