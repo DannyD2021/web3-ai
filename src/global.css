@@ -23,4 +23,5 @@ body {
   height: 100vh;
   background: #1b293e;
   color: #fff;
+  position: relative;
 }

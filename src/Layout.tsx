@@ -25,7 +25,7 @@ const AppContainer = styled.main`
   width: 100%;
 `
 
-const HeaderContainer = styled.main`
+const HeaderContainer = styled.div`
   background: #20344E;
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.05);
   padding: 5px 16px;
