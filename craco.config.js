@@ -11,4 +11,7 @@ module.exports = {
       },
     },
   ],
+  babel: {
+    plugins: ['jsx-control-statements'],
+  },
 };

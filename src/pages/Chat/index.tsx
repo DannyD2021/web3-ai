@@ -5,6 +5,7 @@ import apis from "@/apis";
 import _ from 'underscore'
 import { scrollIntoViewById } from "@/utils";
 import { SendIcon, MenuIcon } from "@/components/icons";
+import { fetchEventSource } from "@microsoft/fetch-event-source";
 
 
 export interface MessageType {
@@ -67,6 +68,26 @@ const TextInput = styled.input`
   caret-color: #31499b;
   flex: 1;
 `;
+
+
+const ctrl = new AbortController();
+// console.time('/gw/api/v1/chat/completions');
+// fetchEventSource('/gw/api/v1/chat/completions', {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({
+//         content: 'apple'
+//     }),
+//     signal: ctrl.signal,
+//     onmessage(msg) {
+//       // if the server emits an error message, throw an exception
+//       // so it gets handled by the onerror callback below:
+//       console.log('msg: ', msg)
+//       // console.timeEnd('/gw/api/v1/chat/completions')
+//   },
+// });
 
 
 

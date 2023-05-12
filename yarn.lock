@@ -36,7 +36,7 @@
   resolved "https://registry.yarnpkg.com/@babel/compat-data/-/compat-data-7.21.7.tgz#61caffb60776e49a57ba61a88f02bedd8714f6bc"
   integrity sha512-KYMqFYTaenzMK4yUtf4EW9wc4N9ef80FsbMtkwool5zpwl4YrT1SdWYSTRcT94KO4hannogdS+LxY7L+arP3gA==
 
-"@babel/core@^7.1.0", "@babel/core@^7.11.1", "@babel/core@^7.12.3", "@babel/core@^7.16.0", "@babel/core@^7.6.0", "@babel/core@^7.7.2", "@babel/core@^7.8.0":
+"@babel/core@^7.1.0", "@babel/core@^7.1.2", "@babel/core@^7.11.1", "@babel/core@^7.12.3", "@babel/core@^7.16.0", "@babel/core@^7.6.0", "@babel/core@^7.7.2", "@babel/core@^7.8.0":
   version "7.21.8"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.21.8.tgz#2a8c7f0f53d60100ba4c32470ba0281c92aa9aa4"
   integrity sha512-YeM22Sondbo523Sz0+CirSPnbj9bG3P0CdHcBZdqUuaeOaYEFbOLoGU7lebvGP6P5J/WE9wOn7u7C4J9HvS1xQ==
@@ -2054,6 +2054,11 @@
     debug "^4.3.4"
     semver "^7.3.8"
     superstruct "^1.0.3"
+
+"@microsoft/fetch-event-source@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@microsoft/fetch-event-source/-/fetch-event-source-2.0.1.tgz#9ceecc94b49fbaa15666e38ae8587f64acce007d"
+  integrity sha512-W6CLUJ2eBMw3Rec70qrsEW0jOm/3twwJv21mrmj2yORiaVmVYGS4sSS5yUwvQc1ZlDLYGPnClVWmUUMagKNsfA==
 
 "@motionone/animation@^10.15.1":
   version "10.15.1"
@@ -4352,6 +4357,13 @@ babel-plugin-jest-hoist@^27.5.1:
     "@babel/types" "^7.3.3"
     "@types/babel__core" "^7.0.0"
     "@types/babel__traverse" "^7.0.6"
+
+babel-plugin-jsx-control-statements@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-jsx-control-statements/-/babel-plugin-jsx-control-statements-4.1.2.tgz#eb90494109cad3ed1b88dc75416e2c056fca1462"
+  integrity sha512-GUEnED4GLxJnFGKidbdI0GNN5Ekih4wbAr7+ENkpUKWYxeg7UPcgwmYd7qrpxT7UWto4OZtyUJg+sm+QN4ZjkQ==
+  dependencies:
+    "@babel/core" "^7.1.2"
 
 babel-plugin-macros@^3.1.0:
   version "3.1.0"
