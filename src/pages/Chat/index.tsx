@@ -5,7 +5,8 @@ import apis from "@/apis";
 import _ from 'underscore'
 import { scrollIntoViewById } from "@/utils";
 import { SendIcon, MenuIcon } from "@/components/icons";
-import { fetchEventSource } from "@microsoft/fetch-event-source";
+import ChatQuickMenu from "./components/ChatQuickMenu";
+// import { fetchEventSource } from "@microsoft/fetch-event-source";
 
 
 export interface MessageType {
@@ -124,7 +125,7 @@ const Chat = () => {
       <ChatLines chatMsgs={chatMessages} sendMessage={sendMessage}/>
       <InputContainer>
         <InputBlock>
-          <MenuIcon />
+          <ChatQuickMenu />
           <TextInput
             placeholder="Input a message..."
             value={inputMsg}
