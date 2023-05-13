@@ -3,7 +3,7 @@ import { createStore } from 'hox';
 import _ from 'underscore';
 import { fetchEventSource, EventStreamContentType } from "@microsoft/fetch-event-source";
 import { scrollIntoViewById } from '@/utils';
-import apis from "@/apis";
+// import apis from "@/apis";
 
 export enum ChatTypes {
   SESSION,
@@ -57,7 +57,6 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     //     console.log(ev.data);
     // };
     // handle chatgpt
-    console.time("fetchEventSource");
     await fetchEventSource('/gw/api/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -66,34 +65,33 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
       body: JSON.stringify({
         content: msg
       }),
-      // signal: ctrl.signal,
+      signal: ctrl.signal,
       onmessage(msg) {
         if (msg.event === 'FatalError') {
           throw new FatalError(msg.data);
         }
         if (msg.event === 'chatgpt') {
+          const msgData = JSON.parse(msg.data);
           Object.assign(newAIMsg, {
             loading: false,
-            message: { content: newAIMsg.message.content + msg.data }
+            message: { content: newAIMsg.message.content + msgData }
           });
-          // setChatMessages(originMsgs.concat(newUserMsg, newAIMsg));
-          console.log('chatMessages: ', chatMessages);
+          setChatMessages(originMsgs.concat(newUserMsg, newAIMsg));
+          console.log('chatMessages: ', originMsgs.concat(newUserMsg, newAIMsg));
         }
-        console.timeEnd("fetchEventSource");
-        console.log('msg: ', msg)
       },
-      onclose() {
-        // if the server closes the connection unexpectedly, retry:
-        throw new RetriableError();
-      },
-      onerror(err) {
-        if (err instanceof FatalError) {
-          throw err; // rethrow to stop the operation
-        } else {
-          // do nothing to automatically retry. You can also
-          // return a specific retry interval here.
-        }
-      }
+      // onclose() {
+      //   // if the server closes the connection unexpectedly, retry:
+      //   throw new RetriableError();
+      // },
+      // onerror(err) {
+      //   if (err instanceof FatalError) {
+      //     throw err; // rethrow to stop the operation
+      //   } else {
+      //     // do nothing to automatically retry. You can also
+      //     // return a specific retry interval here.
+      //   }
+      // }
     });
     // const chatAnswer: any = await apis.chat({ content: msg }).then(res => res.data);
     // setChatMessages([
