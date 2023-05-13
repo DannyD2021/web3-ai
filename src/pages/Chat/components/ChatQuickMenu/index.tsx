@@ -15,7 +15,7 @@ const MenuList = styled.div`
     width: 220px;
     height: 53px;
     top: -70px;
-    background: rgba(118, 134, 171, 0.15);
+    background: #28374e;
     border-radius: 4px; 
     padding: 12px;
     display: flex;

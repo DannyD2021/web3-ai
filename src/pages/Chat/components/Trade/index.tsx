@@ -125,11 +125,14 @@ const Trade = () => {
                         value={trade.fromToken}
                     >
                         {TOKENS.map(t => (
-                            <MenuItem value={t.value}><img src={t.icon} className="token-img" /><span className="token-label">{t.label}</span></MenuItem>
+                            <MenuItem value={t.value} key={t.value}><img src={t.icon} className="token-img" /><span className="token-label">{t.label}</span></MenuItem>
                         ))}
                     </Select>
                     <InputTokenContainer>
-                        <input value={trade.fromAmount} placeholder="Please input..."/>
+                        <input
+                            onChange={(e: React.FormEvent<HTMLInputElement>) => handleTradeChange('fromAmount', e.currentTarget.value)}
+                            value={trade.fromAmount}
+                            placeholder="Please input..."/>
                         <span className="max-amount">Max</span>
                     </InputTokenContainer>
                 </div>
@@ -150,7 +153,7 @@ const Trade = () => {
                         value={trade.toToken}
                     >
                         {TOKENS.map(t => (
-                            <MenuItem value={t.value}><img src={t.icon} className="token-img" /><span className="token-label">{t.label}</span></MenuItem>
+                            <MenuItem value={t.value} key={t.value}><img src={t.icon} className="token-img" /><span className="token-label">{t.label}</span></MenuItem>
                         ))}
                     </Select>
                     <span className="flex items-center">{trade.toAmount}</span>
