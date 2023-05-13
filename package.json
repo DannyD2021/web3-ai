@@ -13,6 +13,7 @@
     "axios": "^1.4.0",
     "craco": "^0.0.3",
     "ethers": "^5.7.2",
+    "hox": "^2.1.0",
     "linkify-html": "^4.1.1",
     "linkifyjs": "^4.1.1",
     "react": "^18.2.0",
