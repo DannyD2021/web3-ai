@@ -26,7 +26,7 @@ const TradeContainer = styled.div`
         .MuiSelect-select {
             padding: 0 32px 5px 0;
         }
-        .css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
+        .MuiSvgIcon-root {
             color: rgba(167, 172, 184, 0.5);
         }
         fieldset {
@@ -92,8 +92,8 @@ const Trade = () => {
     const [trade, setTrade] = useState({
         fromToken: TOKENS[0].value,
         toToken: TOKENS[1].value,
-        fromAmount: 0,
-        toAmount: 0,
+        fromAmount: 0.00,
+        toAmount: 0.00,
     });
     const handleTradeChange = (tokenField: string, tokenValue: string) => {
         setTrade({

@@ -12,3 +12,7 @@ export const convertNewLines = (text: string) => {
     const handleATagMsg = linkifyHtml(handleBr, { defaultProtocol: "https", target: '_blank', className: 'address-link'});
     return handleATagMsg;
 }
+
+export const formatAddress = (address: string) => {
+    return `${address.slice(0,4)}...${address.slice(-4)}`
+}

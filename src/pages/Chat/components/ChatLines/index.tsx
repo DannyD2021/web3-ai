@@ -14,10 +14,10 @@ import {
   ChatContent,
   RecommendsContainer,
   ChartIframe,
- } from './ChatLInes.styles';
+ } from './ChatLines.styles';
  import { ChatTypes, MessageType } from "@/store/chat";
  import { ANALYTICS_HOST } from "@/const";
- import Trade from "./components/Trade";
+ import Trade from "../Trade";
 
 const ChatConfig: any = {
   ai: {

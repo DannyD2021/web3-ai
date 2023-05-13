@@ -6,10 +6,10 @@
   --main-color: #3765EF;
 }
 
-w3m-core-button {
+/* w3m-core-button {
   --w3m-accent-color: #3765EF;
   transform: scale(0.8) translateX(10%);
-}
+} */
 
 img {
   display: inline-block;
@@ -18,10 +18,6 @@ img {
 body {
   width: 100%;
   height: 100%;
-}
-
-.flex-center {
-  
 }
 
 #root {

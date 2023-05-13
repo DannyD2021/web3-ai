@@ -1,6 +1,6 @@
 import React from "react";
 import styled from '@emotion/styled';
-import ChatLines from "./ChatLines";
+import ChatLines from "./components/ChatLines";
 import _ from 'underscore'
 import { SendIcon } from "@/components/icons";
 import ChatQuickMenu from "./components/ChatQuickMenu";
