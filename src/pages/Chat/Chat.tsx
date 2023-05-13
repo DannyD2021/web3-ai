@@ -1,34 +1,10 @@
-import React, { ReactEventHandler, useEffect, useState } from "react";
+import React from "react";
 import styled from '@emotion/styled';
 import ChatLines from "./ChatLines";
-import apis from "@/apis";
 import _ from 'underscore'
-import { scrollIntoViewById } from "@/utils";
-import { SendIcon, MenuIcon } from "@/components/icons";
+import { SendIcon } from "@/components/icons";
 import ChatQuickMenu from "./components/ChatQuickMenu";
-import { fetchEventSource } from "@microsoft/fetch-event-source";
 import { useChatStore } from "@/store/chat";
-
-
-export interface MessageType {
-  who: string;
-  message?: {
-    content?: string;
-    chartIds?: number[];
-    sql?: string;
-    messageId?: number;
-  };
-  loading?: boolean
-}
-
-const initialChats: MessageType[] = [
-  {
-    who: "ai",
-    message: {
-      content: `Hi, I'm Web3 Analytics AI, your Web3 assistant. Feel free to ask me anything about Web3 & Crypto market.`,
-    },
-  }
-];
 
 
 const ChatContainer = styled.div`
@@ -71,50 +47,8 @@ const TextInput = styled.input`
   flex: 1;
 `;
 
-
-// const ctrl = new AbortController();
-// console.time('/gw/api/v1/chat/completions');
-// fetchEventSource('/gw/api/v1/chat/completions', {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/json',
-//   },
-//   body: JSON.stringify({
-//     content: 'apple'
-//   }),
-//   signal: ctrl.signal,
-//   onmessage(msg) {
-//     // if the server emits an error message, throw an exception
-//     // so it gets handled by the onerror callback below:
-//     console.log('msg: ', msg)
-//     // console.timeEnd('/gw/api/v1/chat/completions')
-//   },
-// });
-
-
-
 const Chat = () => {
-  const { chatMessages, setChatMessages } = useChatStore();
-  const [inputMsg, setInputMsg] = useState("");
-
-  const sendMessage = _.debounce(async (msg: any) => {
-    if (!msg) return;
-    const newChatMsg = [
-      ...chatMessages,
-      { message: { content: msg }, who: "user" },
-    ];
-    setChatMessages(newChatMsg.concat({ who: "ai", loading: true }));
-    scrollIntoViewById(`chat-${newChatMsg.length}`)
-    const chatAnswer: any = await apis.chat({ content: msg }).then(res => res.data);
-    setChatMessages([
-      ...newChatMsg,
-      {
-        who: "ai",
-        message: chatAnswer,
-      },
-    ]);
-    setInputMsg("");
-  }, 500);
+  const { chatMessages, inputMsg, setInputMsg, sendMessage } = useChatStore();
 
   const handleKeyDown = (event: any) => {
     if (event.key === 'Enter') {

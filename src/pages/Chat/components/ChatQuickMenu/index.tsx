@@ -1,7 +1,8 @@
-import React, { ReactEventHandler, useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from '@emotion/styled';
 import _ from 'underscore'
 import { MenuIcon, SwapTokenIcon } from "@/components/icons";
+import { useChatStore, ChatTypes } from "@/store/chat";
 
 const ChatQuickMenuContainer = styled.div`
     position: relative;
@@ -37,13 +38,19 @@ const MenuItem = styled.div`
 
 const ChatQuickMenu = () => {
     const [menuVisble, setMenuVisible] = useState(false);
+    const { addNewMessage } = useChatStore();
+    const onMenuClick = (type: ChatTypes) => {
+        addNewMessage({
+            who: "ai",
+            type,
+        })
+        setMenuVisible(false);
+    }
     return (
         <ChatQuickMenuContainer>
             {menuVisble && (
                 <MenuList>
-                    <MenuItem>
-                        <SwapTokenIcon/><span>Swap Token 交易代币</span>
-                    </MenuItem>
+                    <MenuItem onClick={() => onMenuClick(ChatTypes.TRADE)}><SwapTokenIcon/><span>Swap Token 交易代币</span></MenuItem>
                 </MenuList>
             )}
             <span onClick={() => setMenuVisible(!menuVisble)}><MenuIcon/></span>

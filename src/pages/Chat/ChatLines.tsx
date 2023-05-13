@@ -15,9 +15,9 @@ import {
   RecommendsContainer,
   ChartIframe,
  } from './ChatLInes.styles';
- import { MessageType } from "@/store/chat";
+ import { ChatTypes, MessageType } from "@/store/chat";
  import { ANALYTICS_HOST } from "@/const";
-//  import Trade from "./components/Trade";
+ import Trade from "./components/Trade";
 
 const ChatConfig: any = {
   ai: {
@@ -59,7 +59,7 @@ const ThumbsBlock = styled.span`
 
 
 const MsgBlock = ({ msg, id } : { msg: MessageType, id: number }) => {
-  const { who, message, loading } = msg || {};
+  const { who, message, loading, type } = msg || {};
   const { content, messageId, chartIds = [] } = message || {};
   const className = ChatConfig[who].className;
   const showThumbs = id > 1 && who === 'ai' && !loading;
@@ -78,13 +78,13 @@ const MsgBlock = ({ msg, id } : { msg: MessageType, id: number }) => {
       })
     })
   }
-  return (
-    <ContentBlock className={className} id={`chat-${id}`}>
-      <ChatLabel className={className}>
-        {ChatConfig[who].label}
-      </ChatLabel>
-      <ChatAnswerContainer className={className}>
-        {content && <ChatContent dangerouslySetInnerHTML={{ __html: convertNewLines(content) }} />}
+  const renderContent = (type?: ChatTypes) => {
+    if (type === ChatTypes.TRADE) {
+      return <Trade/>
+    }
+    return (
+      <>
+         {content && <ChatContent dangerouslySetInnerHTML={{ __html: convertNewLines(content) }} />}
         {loading && <DotLoading text="W3AI is thinking"/>}
         {chartIds?.length > 0 && <ChartIframe height={chartIds.length*450+0.5} src={`${ANALYTICS_HOST}/public/charts?chart_ids=${chartIds.join(',')}`}/> }
         {showThumbs &&  (
@@ -93,7 +93,16 @@ const MsgBlock = ({ msg, id } : { msg: MessageType, id: number }) => {
             <ThumbsBlock onClick={() => onThumbs(0)}><ThumbUpAltIcon className={`icon ${thumbs.thumbUp ? 'actived' : ''}`}/></ThumbsBlock>
           </ThumbsContainer>
         )}
-        {/* <Trade /> */}
+      </>
+    )
+  }
+  return (
+    <ContentBlock className={className} id={`chat-${id}`}>
+      <ChatLabel className={className}>
+        {ChatConfig[who].label}
+      </ChatLabel>
+      <ChatAnswerContainer className={className}>
+        {renderContent(type)}
       </ChatAnswerContainer>
     </ContentBlock>
   )
