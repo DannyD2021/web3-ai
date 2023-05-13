@@ -17,6 +17,7 @@ import {
  } from './ChatLInes.styles';
  import { MessageType } from "./index";
  import { ANALYTICS_HOST } from "@/const";
+ import Trade from "./components/Trade";
 
 const ChatConfig: any = {
   ai: {
@@ -92,6 +93,7 @@ const MsgBlock = ({ msg, id } : { msg: MessageType, id: number }) => {
             <ThumbsBlock onClick={() => onThumbs(0)}><ThumbUpAltIcon className={`icon ${thumbs.thumbUp ? 'actived' : ''}`}/></ThumbsBlock>
           </ThumbsContainer>
         )}
+        <Trade />
       </ChatAnswerContainer>
     </ContentBlock>
   )

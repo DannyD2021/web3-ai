@@ -1,0 +1,19 @@
+.MuiList-root {
+    background: #223353;
+}
+
+.MuiMenuItem-root {
+    padding: 0 24px !important;
+}
+
+.token-img {
+    width: 28px;
+    height: 28px;
+}
+.token-label {
+    color: #FFFFFF;
+    font-weight: 500;
+    margin-left: 8px;
+    position: relative;
+    top: 2px;
+}

@@ -26,7 +26,7 @@ const initialChats: MessageType[] = [
     message: {
       content: `Hi, I'm Web3 Analytics AI, your Web3 assistant. Feel free to ask me anything about Web3 & Crypto market.`,
     },
-  },
+  }
 ];
 
 

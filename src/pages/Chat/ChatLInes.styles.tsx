@@ -8,7 +8,6 @@ export const ChatLinesContainer = styled.div`
   color: #fff;
   font-size: 14px;
   font-weight: 400;
-  line-height: 150%;
   position: relative;
   overflow: auto;
 
@@ -22,7 +21,7 @@ export const ChatLinesContainer = styled.div`
 `;
 
 export const ContentBlock = styled.div`
-  min-width: 55%;
+  min-width: 90%;
   max-width: 95%;
   gap: 20px;
   margin-bottom: 16px;
