@@ -76,21 +76,11 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
             loading: false,
             message: { content: newAIMsg.message.content + msg.data }
           });
-          setChatMessages(originMsgs.concat(newUserMsg, newAIMsg));
+          // setChatMessages(originMsgs.concat(newUserMsg, newAIMsg));
           console.log('chatMessages: ', chatMessages);
         }
         console.timeEnd("fetchEventSource");
         console.log('msg: ', msg)
-      },
-      async onopen(response) {
-        if (response.ok && response.headers.get('content-type') === EventStreamContentType) {
-          return; // everything's good
-        } else if (response.status >= 400 && response.status < 500 && response.status !== 429) {
-          // client-side errors are usually non-retriable:
-          throw new FatalError();
-        } else {
-          throw new RetriableError();
-        }
       },
       onclose() {
         // if the server closes the connection unexpectedly, retry:
