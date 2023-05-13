@@ -77,7 +77,7 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
             message: { content: newAIMsg.message.content + msgData }
           });
           setChatMessages(originMsgs.concat(newUserMsg, newAIMsg));
-          console.log('chatMessages: ', originMsgs.concat(newUserMsg, newAIMsg));
+          console.log('msg: ', msg);
         }
       },
       // onclose() {
