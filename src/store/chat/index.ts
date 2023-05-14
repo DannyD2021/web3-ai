@@ -77,8 +77,8 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
             message: { content: newAIMsg.message.content + msgData }
           });
           setChatMessages(originMsgs.concat(newUserMsg, newAIMsg));
-          console.log('msg: ', msg);
         }
+        console.log('msg: ', msg);
       },
       // onclose() {
       //   // if the server closes the connection unexpectedly, retry:

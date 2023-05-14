@@ -30,7 +30,7 @@ const AppContainer = styled.main`
 const HeaderContainer = styled.div`
   background: #20344E;
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.05);
-  padding: 5px 16px;
+  padding: 8px 16px;
 
   .user {
     position: relative;
@@ -38,6 +38,8 @@ const HeaderContainer = styled.div`
       padding: 6px 12px;
       background: #3765EF;
       border-radius: 4px;
+      font-size: 13px;
+      font-weight: bold;
     }
 
     .user-menu {
@@ -99,6 +101,7 @@ export default function Layout() {
               <ul className="user-menu">
                 <li onClick={() => {
                   navigate('/user');
+                  setUserMenuVisible(false);
                 }}><MyProfileIcon /><span>My profile</span></li>
                 <li onClick={handleDisConnect}><DisconnectIcon /><span>Disconnect</span></li>
               </ul>
