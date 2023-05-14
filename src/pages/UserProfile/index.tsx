@@ -2,8 +2,11 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { useAccount } from 'wagmi';
 import { formatAddress } from '@/utils';
+import Email from './components/Email';
+import MyScore from './components/MyScore';
 
 const UserProfileContainer = styled.div`
+  padding: 16px;
   .header {
     display: flex;
     flex-direction: column;
@@ -25,6 +28,8 @@ export default function UserProfile() {
           <img src='./my-profile-header.png'/>
           <span>Wallet Address: {address ? formatAddress(address) : '--'}</span>
         </div>
+        <Email/>
+        <MyScore/>
     </UserProfileContainer>
   );
 }

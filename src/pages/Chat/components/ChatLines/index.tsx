@@ -31,7 +31,7 @@ const ChatConfig: any = {
 };
 
 const ThumbsContainer = styled.div`
-  margin-top: 5px;
+  margin: 10px 0;
   display: flex;
   flex-direction: row-reverse;
   gap: 8px;

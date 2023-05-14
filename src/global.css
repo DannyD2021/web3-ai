@@ -11,7 +11,7 @@
   transform: scale(0.8) translateX(10%);
 } */
 
-img {
+img, svg{
   display: inline-block;
 }
 
@@ -24,7 +24,7 @@ body {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  height: 100vh;
+  height: 100%;
   background: #1b293e;
   color: #fff;
   position: relative;

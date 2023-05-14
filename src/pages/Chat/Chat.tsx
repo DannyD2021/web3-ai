@@ -8,8 +8,9 @@ import { useChatStore } from "@/store/chat";
 
 
 const ChatContainer = styled.div`
-  height: calc(100% - 80px);
+  height: calc(100vh - 47.5px);
   padding-bottom: 40px;
+  position: relative;
 `;
 
 const InputContainer = styled.div`
