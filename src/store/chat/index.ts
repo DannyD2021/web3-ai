@@ -47,8 +47,8 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
   const sendMessage = _.debounce(async (msg: any) => {
     if (!msg) return;
     const originMsgs = [...chatMessages];
-    const newUserMsg = { message: { content: msg }, who: "user", type: ChatTypes.SESSION };
-    const newAIMsg = { message: { content: '' },  who: "ai", loading: true, type: ChatTypes.SESSION };
+    const newUserMsg: MessageType = { message: { content: msg }, who: "user", type: ChatTypes.SESSION };
+    const newAIMsg: MessageType = { message: { content: '' },  who: "ai", loading: true, type: ChatTypes.SESSION };
     const newMsgs = originMsgs.concat(newUserMsg, newAIMsg);
     setChatMessages(newMsgs);
     scrollIntoViewById(`chat-${newMsgs.length-1}`);
@@ -74,8 +74,18 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
           const msgData = JSON.parse(msg.data);
           Object.assign(newAIMsg, {
             loading: false,
-            message: { content: newAIMsg.message.content + msgData }
+            message: { content: newAIMsg?.message?.content + msgData }
           });
+          setChatMessages(originMsgs.concat(newUserMsg, newAIMsg));
+        }
+        if (msg.event === 'chart') {
+          const msgData = JSON.parse(msg.data);
+          newAIMsg!.message!.chartIds = msgData;
+          setChatMessages(originMsgs.concat(newUserMsg, newAIMsg));
+        }
+        if (msg.event === 'db') {
+          const msgData = JSON.parse(msg.data);
+          newAIMsg!.message!.messageId = msgData.messageId;
           setChatMessages(originMsgs.concat(newUserMsg, newAIMsg));
         }
         console.log('msg: ', msg);
