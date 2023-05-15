@@ -37,6 +37,7 @@ class RetriableError extends Error { };
 class FatalError extends Error { };
 
 export const [useChatStore, ChatStoreProvider] = createStore(() => {
+  const [chatloading, setChatLoading] = useState(false);
   const [chatMessages, setChatMessages] = useState(initialChats);
   const [inputMsg, setInputMsg] = useState("");
 
@@ -45,7 +46,9 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
   }
 
   const sendMessage = _.debounce(async (msg: any) => {
-    if (!msg) return;
+    if (!msg || chatloading) return;
+    setChatLoading(true);
+    setInputMsg("");
     const originMsgs = [...chatMessages];
     const newUserMsg: MessageType = { message: { content: msg }, who: "user", type: ChatTypes.SESSION };
     const newAIMsg: MessageType = { message: { content: '' },  who: "ai", loading: true, type: ChatTypes.SESSION };
@@ -90,18 +93,21 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
         }
         console.log('msg: ', msg);
       },
-      // onclose() {
-      //   // if the server closes the connection unexpectedly, retry:
-      //   throw new RetriableError();
-      // },
-      // onerror(err) {
-      //   if (err instanceof FatalError) {
-      //     throw err; // rethrow to stop the operation
-      //   } else {
-      //     // do nothing to automatically retry. You can also
-      //     // return a specific retry interval here.
-      //   }
-      // }
+      onclose() {
+        setChatLoading(false);
+        // if the server closes the connection unexpectedly, retry:
+        // throw new RetriableError();
+      },
+      onerror(err) {
+        console.log('EventSource err: ', err);
+        // if (err instanceof FatalError) {
+        //   throw err; // rethrow to stop the operation
+        // } else {
+        //   // do nothing to automatically retry. You can also
+        //   // return a specific retry interval here.
+        // }
+      },
+      openWhenHidden: false
     });
     // const chatAnswer: any = await apis.chat({ content: msg }).then(res => res.data);
     // setChatMessages([
@@ -111,7 +117,6 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     //     message: chatAnswer,
     //   },
     // ]);
-    setInputMsg("");
   }, 500);
   return {
     chatMessages,
