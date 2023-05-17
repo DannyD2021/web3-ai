@@ -21,8 +21,7 @@ export const ChatLinesContainer = styled.div`
 `;
 
 export const ContentBlock = styled.div`
-  min-width: 90%;
-  max-width: 95%;
+  width: 95%;
   gap: 20px;
   margin-bottom: 16px;
   clear: both;

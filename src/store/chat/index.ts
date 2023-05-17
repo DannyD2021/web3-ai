@@ -125,5 +125,6 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     setInputMsg,
     sendMessage,
     addNewMessage,
+    chatloading
   }
 })

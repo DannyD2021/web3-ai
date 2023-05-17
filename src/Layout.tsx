@@ -24,12 +24,23 @@ const ethereumClient = new EthereumClient(wagmiClient, chains)
 const AppContainer = styled.main`
   height: 100%;
   width: 100%;
+  position: relative;
+  padding-top: 48px;
 `
 
 const HeaderContainer = styled.div`
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+  justify-content: space-between;
   background: #20344E;
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.05);
   padding: 8px 16px;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 
   .user {
     position: relative;
@@ -89,7 +100,7 @@ export default function Layout() {
   return (
     <AppContainer>
       <WagmiConfig client={wagmiClient}>
-        <HeaderContainer className="flex justify-between">
+        <HeaderContainer>
           <img src='./logo.svg' onClick={() => {
             navigate('/');
             setUserMenuVisible(false);
