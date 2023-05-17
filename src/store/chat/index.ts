@@ -41,8 +41,15 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
   const [chatMessages, setChatMessages] = useState(initialChats);
   const [inputMsg, setInputMsg] = useState("");
 
-  const addNewMessage = (msg: MessageType) => {
-    setChatMessages(chatMessages.concat(msg))
+  const addNewMessage = (msg: MessageType | MessageType[]) => {
+    const newMsgs = chatMessages.concat(msg);
+    setChatMessages(newMsgs);
+    setTimeout(() => {
+      const msgSize = newMsgs.length;
+      const lastChatDivId = newMsgs[msgSize-1].type === ChatTypes.SESSION ? `chat-${newMsgs.length - 1}` : `chat-${newMsgs.length}`;
+      const lastOffsetTop = document.getElementById(lastChatDivId)?.offsetTop || 0;
+      document.getElementById('chat-container')?.scrollTo({ top: lastOffsetTop, behavior: 'smooth' });
+    });
   }
 
   const sendMessage = _.debounce(async (msg: any) => {
@@ -52,13 +59,7 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     const originMsgs = [...chatMessages];
     const newUserMsg: MessageType = { message: { content: msg }, who: "user", type: ChatTypes.SESSION };
     const newAIMsg: MessageType = { message: { content: '' },  who: "ai", loading: true, type: ChatTypes.SESSION };
-    const newMsgs = originMsgs.concat(newUserMsg, newAIMsg);
-    setChatMessages(newMsgs);
-    scrollIntoViewById(`chat-${newMsgs.length-1}`);
-    // const sse = new EventSource('/gw/api/v1/chat/completions');
-    // sse.onmessage = (ev) => {
-    //     console.log(ev.data);
-    // };
+    addNewMessage([newUserMsg, newAIMsg])
     // handle chatgpt
     await fetchEventSource('/gw/api/v1/chat/completions', {
       method: 'POST',
@@ -91,32 +92,15 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
           newAIMsg!.message!.messageId = msgData.messageId;
           setChatMessages(originMsgs.concat(newUserMsg, newAIMsg));
         }
-        console.log('msg: ', msg);
       },
       onclose() {
         setChatLoading(false);
-        // if the server closes the connection unexpectedly, retry:
-        // throw new RetriableError();
       },
       onerror(err) {
         console.log('EventSource err: ', err);
-        // if (err instanceof FatalError) {
-        //   throw err; // rethrow to stop the operation
-        // } else {
-        //   // do nothing to automatically retry. You can also
-        //   // return a specific retry interval here.
-        // }
       },
       openWhenHidden: false
     });
-    // const chatAnswer: any = await apis.chat({ content: msg }).then(res => res.data);
-    // setChatMessages([
-    //   ...newChatMsg,
-    //   {
-    //     who: "ai",
-    //     message: chatAnswer,
-    //   },
-    // ]);
   }, 500);
   return {
     chatMessages,

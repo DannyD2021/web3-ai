@@ -114,8 +114,8 @@ const ChatLines = ({ chatMsgs, sendMessage }: { chatMsgs: MessageType[], sendMes
     apis.recommends().then((res: any) => setRecommends(res.data || []))
   }, [])
   return (
-    <ChatLinesContainer>
-      <MsgBlock msg={chatMsgs[0]} id={0}/>
+    <ChatLinesContainer id="chat-container">
+      <MsgBlock msg={chatMsgs[0]} id={1}/>
       <RecommendsContainer>
         {recommends?.map((reco: any, index: number) => (
           <div 
@@ -126,7 +126,7 @@ const ChatLines = ({ chatMsgs, sendMessage }: { chatMsgs: MessageType[], sendMes
           </div>
         ))}
       </RecommendsContainer>
-      {chatMsgs?.slice(1)?.map((msg, index) => <MsgBlock msg={msg} key={index} id={index+1}/>)}
+      {chatMsgs?.slice(1)?.map((msg, index) => <MsgBlock msg={msg} key={index} id={index+2}/>)}
     </ChatLinesContainer>
   );
 };

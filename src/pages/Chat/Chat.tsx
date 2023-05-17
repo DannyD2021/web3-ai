@@ -9,7 +9,7 @@ import { useChatStore } from "@/store/chat";
 
 const ChatContainer = styled.div`
   height: calc(100vh - 47.5px);
-  padding-bottom: 40px;
+  padding-bottom: 80px;
   position: relative;
 `;
 
