@@ -18,7 +18,7 @@ const InputContainer = styled.div`
   max-width: 800px;
   display: flex;
   padding: 15px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   gap: 5px;
   text-align: center;
@@ -52,10 +52,6 @@ const ChatButtonContainer = styled.div`
   width: 56px;
   height: 56px;
   position: relative;
-  /* display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column; */
   background: url('./chat_button_bg.png');
   overflow: hidden;
 
@@ -109,7 +105,7 @@ const Chat = () => {
             onKeyDown={handleKeyDown}
           />
         </InputBlock>
-        <ChatButtonContainer className="chat-button-container" onClick={(e: any) => {
+        <ChatButtonContainer onClick={(e: any) => {
           sendMessage(inputMsg);
         }}>
           <img className={`chat-button ${chatloading ? 'rocket1' : ''}`} src="./chat_button.png"/>
