@@ -6,7 +6,12 @@ import { Web3Modal, useWeb3Modal } from '@web3modal/react';
 import { configureChains, createClient, WagmiConfig, useAccount } from 'wagmi';
 import { arbitrum, mainnet, polygon } from 'wagmi/chains';
 import { formatAddress } from '@/utils';
+import {
+  isDesktop,
+  isMobile
+} from 'react-device-detect';
 import { MyProfileIcon, DisconnectIcon } from './components/icons';
+import Footer from './components/Footer';
 import './global.css';
 
 const chains = [arbitrum, mainnet, polygon];
@@ -121,6 +126,7 @@ export default function Layout() {
       </WagmiConfig>
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
       <Outlet />
+      {/* <Footer/> */}
     </AppContainer>
   );
 }

@@ -97,6 +97,7 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
         setChatLoading(false);
       },
       onerror(err) {
+        setChatLoading(false);
         console.log('EventSource err: ', err);
       },
       openWhenHidden: false
