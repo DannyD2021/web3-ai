@@ -47,8 +47,9 @@ const MsgBlock = ({ msg, id } : { msg: MessageType, id: number }) => {
   });
   const onThumbs = (attitude: number) => {
     apis.attitude({
-      message_id: messageId || 2362,
-      attitude
+      message_id: messageId,
+      attitude,
+      reason: '',
     }).then(() => {
       setThumbs({
         thumbDown: attitude === THUMB_TYPES.UP,
