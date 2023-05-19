@@ -6,5 +6,5 @@ export interface IBaseResp<D = any> {
 
 export enum THUMB_TYPES {
   UP = 1,
-  DOWN = 1
+  DOWN = -1
 }
