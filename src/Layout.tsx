@@ -91,7 +91,6 @@ export default function Layout() {
   const { address, isConnected } = useAccount();
   const [userMenuVisible, setUserMenuVisible] = useState(false);
   const { isOpen, open, close, setDefaultChain } = useWeb3Modal();
-  console.log('wallet: ', isConnected, address);
   const handleConnect = () => {
     if (!isConnected) {
       open();

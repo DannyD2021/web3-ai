@@ -3,6 +3,9 @@ import styled from '@emotion/styled';
 
 
 export const MyScoreContainer = styled.div`
+`
+
+export const ScoreBlockContainer = styled.div`
   margin-top: 24px;
   background: rgba(118, 134, 171, 0.05);
   border: 1px solid rgba(118, 134, 171, 0.15);
@@ -47,5 +50,21 @@ export const ScoreBlock = styled.div`
     font-family: 'DIN';
     font-weight: 700;
     font-size: 18px;
+  }
+`
+
+export const InviteNewUserContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  background: rgba(118, 134, 171, 0.05);
+  border: 1px solid rgba(118, 134, 171, 0.15);
+  border-radius: 4px;
+  padding: 16px;
+  .comming-soon {
+    background: rgba(118, 134, 171, 0.15);
+    border-radius: 4px;
+    padding: 4px 12px;
+    color: rgba(118, 134, 171, 0.7);
   }
 `
