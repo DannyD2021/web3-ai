@@ -27,7 +27,7 @@ export default function Email() {
         <EmailContainer>
             <div>Email</div>
             <div>
-                <span className='email-text'>112233452@xx.com</span>
+                <span className='email-text'>example@xx.com</span>
                 <span className='verified-button'>Verified</span>
             </div>
         </EmailContainer>

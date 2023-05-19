@@ -85,3 +85,30 @@ export const ChartIframe = styled.iframe`
   border-top: 0.5px solid rgba(118, 134, 171, 0.5);
   background: #2b374c;
 `;
+
+export const ThumbsContainer = styled.div`
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 8px;
+`
+
+export const ThumbsBlock = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;    
+  width: 36px;
+  height: 36px;
+  background: rgba(118, 134, 171, 0.15);
+  border-radius: 43px;
+  cursor: pointer;
+  
+  .icon {
+    font-size: 1.25rem;
+    color: rgba(118, 134, 171, 0.5);
+
+    &.actived {
+      color: #3765EF;
+    }
+  }
+`

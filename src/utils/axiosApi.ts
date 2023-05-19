@@ -1,4 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
+import { getCookie } from './cookies'
+import { WALLET_ADDRESS } from '@/const'
 
 const instance: AxiosInstance = axios.create({
   timeout: 100000,
@@ -34,7 +36,8 @@ const handleRequestIntercept = (config: any) => {
     cancel: source.cancel,
     // routeChangeCancel: config.routeChangeCancel // 可能会有优先级高于默认设置的routeChangeCancel项值
   })
-  // 针对配置ignoreAuthor字段的接口，无需带上token
+  config.headers['X-UID'] = getCookie(WALLET_ADDRESS);
+  console.log(getCookie(WALLET_ADDRESS))
   return config
 }
 

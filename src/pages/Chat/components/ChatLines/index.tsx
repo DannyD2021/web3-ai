@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
+import { useAccount } from 'wagmi';
 import { convertNewLines } from '@/utils'
 import DotLoading from "@/components/DotLoading";
 import apis from "@/apis";
@@ -14,9 +15,12 @@ import {
   ChatContent,
   RecommendsContainer,
   ChartIframe,
+  ThumbsContainer,
+  ThumbsBlock
  } from './ChatLines.styles';
  import { ChatTypes, MessageType } from "@/store/chat";
  import { ANALYTICS_HOST } from "@/const";
+ import { THUMB_TYPES } from "@/apis/types";
  import Trade from "../Trade";
 
 const ChatConfig: any = {
@@ -30,51 +34,25 @@ const ChatConfig: any = {
   },
 };
 
-const ThumbsContainer = styled.div`
-  margin: 10px 0;
-  display: flex;
-  flex-direction: row-reverse;
-  gap: 8px;
-`
-
-const ThumbsBlock = styled.span`
-  display: flex;
-  justify-content: center;
-  align-items: center;    
-  width: 36px;
-  height: 36px;
-  background: rgba(118, 134, 171, 0.15);
-  border-radius: 43px;
-  cursor: pointer;
-  
-  .icon {
-    font-size: 1.25rem;
-    color: rgba(118, 134, 171, 0.5);
-
-    &.actived {
-      color: #3765EF;
-    }
-  }
-`
-
 
 const MsgBlock = ({ msg, id } : { msg: MessageType, id: number }) => {
+  const { address, isConnected } = useAccount();
   const { who, message, loading, type } = msg || {};
   const { content, messageId, chartIds = [] } = message || {};
   const className = ChatConfig[who].className;
-  const showThumbs = id > 1 && who === 'ai' && !loading;
+  const showThumbs = isConnected && id > 1 && who === 'ai' && !loading;
   const [thumbs, setThumbs] = useState({
     thumbDown: false,
     thumbUp: false,
   });
   const onThumbs = (attitude: number) => {
     apis.attitude({
-      id: messageId,
+      message_id: messageId || 2362,
       attitude
     }).then(() => {
       setThumbs({
-        thumbDown: attitude === 0,
-        thumbUp: attitude === 1,
+        thumbDown: attitude === THUMB_TYPES.UP,
+        thumbUp: attitude === THUMB_TYPES.DOWN,
       })
     })
   }
@@ -89,8 +67,8 @@ const MsgBlock = ({ msg, id } : { msg: MessageType, id: number }) => {
         {chartIds?.length > 0 && <ChartIframe height={chartIds.length*450+0.5} src={`${ANALYTICS_HOST}/public/charts?chart_ids=${chartIds.join(',')}`}/> }
         {showThumbs &&  (
           <ThumbsContainer>
-            <ThumbsBlock onClick={() => onThumbs(1)}><ThumbDownAltIcon className={`icon ${thumbs.thumbDown ? 'actived' : ''}`}/></ThumbsBlock>
-            <ThumbsBlock onClick={() => onThumbs(0)}><ThumbUpAltIcon className={`icon ${thumbs.thumbUp ? 'actived' : ''}`}/></ThumbsBlock>
+            <ThumbsBlock onClick={() => onThumbs(THUMB_TYPES.DOWN)}><ThumbDownAltIcon className={`icon ${thumbs.thumbDown ? 'actived' : ''}`}/></ThumbsBlock>
+            <ThumbsBlock onClick={() => onThumbs(THUMB_TYPES.UP)}><ThumbUpAltIcon className={`icon ${thumbs.thumbUp ? 'actived' : ''}`}/></ThumbsBlock>
           </ThumbsContainer>
         )}
       </>

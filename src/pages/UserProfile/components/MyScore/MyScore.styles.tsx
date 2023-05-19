@@ -33,6 +33,7 @@ export const ScoreContainer = styled.div`
 `
 
 export const ScoreBlock = styled.div`
+  width: 50%;
   padding: 12px 16px;
   background: rgba(118, 134, 171, 0.1);
   border-radius: 4px;

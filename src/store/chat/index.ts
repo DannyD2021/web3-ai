@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { createStore } from 'hox';
 import _ from 'underscore';
-import { fetchEventSource, EventStreamContentType } from "@microsoft/fetch-event-source";
-import { scrollIntoViewById } from '@/utils';
-// import apis from "@/apis";
+import { fetchEventSource } from "@microsoft/fetch-event-source";
 
 export enum ChatTypes {
   SESSION,

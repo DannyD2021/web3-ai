@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { Outlet, useNavigate } from "react-router-dom";
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
@@ -6,12 +6,14 @@ import { Web3Modal, useWeb3Modal } from '@web3modal/react';
 import { configureChains, createClient, WagmiConfig, useAccount } from 'wagmi';
 import { arbitrum, mainnet, polygon } from 'wagmi/chains';
 import { formatAddress } from '@/utils';
+import { setCookie, removeCookie } from '@/utils/cookies';
+import { WALLET_ADDRESS } from '@/const';
 import {
   isDesktop,
   isMobile
 } from 'react-device-detect';
-import { MyProfileIcon, DisconnectIcon } from './components/icons';
-import Footer from './components/Footer';
+import { MyProfileIcon, DisconnectIcon } from '@/components/icons';
+import Footer from '@/components/Footer';
 import './global.css';
 
 const chains = [arbitrum, mainnet, polygon];
@@ -89,6 +91,7 @@ export default function Layout() {
   const { address, isConnected } = useAccount();
   const [userMenuVisible, setUserMenuVisible] = useState(false);
   const { isOpen, open, close, setDefaultChain } = useWeb3Modal();
+  console.log('wallet: ', isConnected, address);
   const handleConnect = () => {
     if (!isConnected) {
       open();
@@ -101,6 +104,17 @@ export default function Layout() {
     open();
     setUserMenuVisible(false);
   }
+
+  useEffect(() => {
+    if (address) {
+      setCookie(WALLET_ADDRESS, address)
+    } else {
+      removeCookie(WALLET_ADDRESS);
+    }
+    return () => {
+      removeCookie(WALLET_ADDRESS);
+    }
+  }, [address])
 
   return (
     <AppContainer>
