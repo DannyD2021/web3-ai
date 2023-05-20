@@ -37,7 +37,6 @@ const handleRequestIntercept = (config: any) => {
     // routeChangeCancel: config.routeChangeCancel // 可能会有优先级高于默认设置的routeChangeCancel项值
   })
   config.headers['X-UID'] = getCookie(WALLET_ADDRESS);
-  console.log(getCookie(WALLET_ADDRESS))
   return config
 }
 
