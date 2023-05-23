@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { createStore } from 'hox';
 import _ from 'underscore';
 import { fetchEventSource } from "@microsoft/fetch-event-source";
@@ -30,11 +30,12 @@ export const initialChats: MessageType[] = [
   }
 ];
 
-const ctrl = new AbortController();
+// const ctrl = new AbortController();
 class RetriableError extends Error { };
 class FatalError extends Error { };
 
 export const [useChatStore, ChatStoreProvider] = createStore(() => {
+  const ctrlRef = useRef<any>(null);
   const [chatloading, setChatLoading] = useState(false);
   const [chatMessages, setChatMessages] = useState(initialChats);
   const [inputMsg, setInputMsg] = useState("");
@@ -52,6 +53,7 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
 
   const sendMessage = _.debounce(async (msg: any) => {
     if (!msg || chatloading) return;
+    ctrlRef.current = new AbortController();
     setChatLoading(true);
     setInputMsg("");
     const originMsgs = [...chatMessages];
@@ -67,7 +69,7 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
       body: JSON.stringify({
         content: msg
       }),
-      signal: ctrl.signal,
+      signal: ctrlRef.current?.signal,
       onmessage(msg) {
         if (msg.event === 'FatalError') {
           throw new FatalError(msg.data);
@@ -104,7 +106,7 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
 
   const stopChat = () => {
     if (chatloading) {
-      ctrl.abort();
+      ctrlRef.current?.abort();
       setChatLoading(false);
       chatMessages.pop();
       const newAIMsg: MessageType = { message: { content: 'W3AI is aborted!' },  who: "ai", type: ChatTypes.SESSION };
