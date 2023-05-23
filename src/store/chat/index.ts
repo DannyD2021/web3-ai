@@ -101,6 +101,16 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
       openWhenHidden: false
     });
   }, 500);
+
+  const stopChat = () => {
+    if (chatloading) {
+      ctrl.abort();
+      setChatLoading(false);
+      chatMessages.pop();
+      const newAIMsg: MessageType = { message: { content: 'W3AI is aborted!' },  who: "ai", type: ChatTypes.SESSION };
+      setChatMessages([...chatMessages, newAIMsg]);
+    }
+  }
   return {
     chatMessages,
     inputMsg,
@@ -108,6 +118,7 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     setInputMsg,
     sendMessage,
     addNewMessage,
-    chatloading
+    chatloading,
+    stopChat
   }
 })

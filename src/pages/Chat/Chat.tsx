@@ -51,41 +51,40 @@ const InputBlock = styled.div`
 const ChatButtonContainer = styled.div`
   width: 56px;
   height: 56px;
-  position: relative;
   background: url('./chat_button_bg.png');
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 
-  .chat-button {
-    display: block;
-    position: absolute;
-    left: 19px;
-    top: 10px;
-    &.rocket1 {
-      animation: move 1.5s linear 0s infinite;
-    }
-    &.rocket2 {
-      animation: move 1.5s linear 0s infinite;
-      top: 60px;
-    }
+  .loading {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    background: #e3722f;
+
+    animation: move 1s ease 0s infinite;
     @keyframes move {
-      0% {
-        transform: translateY(20px);
-      }
-      50% {
-        transform: translateY(-40px);
-      }
-      100% {
-        transform: translateY(-80px);
-      }
+      0% { transform: scale(0.8); }
+      50% { transform: scale(1); }
+      100% { transform: scale(1.2); }
     }
-}
+  }
 `;
 
 const Chat = () => {
-  const { chatMessages, inputMsg, setInputMsg, sendMessage, chatloading } = useChatStore();
+  const { chatMessages, inputMsg, setInputMsg, sendMessage, chatloading, stopChat } = useChatStore();
 
   const handleKeyDown = (event: any) => {
     if (event.key === 'Enter') {
+      sendMessage(inputMsg);
+    }
+  }
+
+  const handleChat = () => {
+    if (chatloading) {
+      stopChat();
+    } else {
       sendMessage(inputMsg);
     }
   }
@@ -105,11 +104,8 @@ const Chat = () => {
             onKeyDown={handleKeyDown}
           />
         </InputBlock>
-        <ChatButtonContainer onClick={(e: any) => {
-          sendMessage(inputMsg);
-        }}>
-          <img className={`chat-button ${chatloading ? 'rocket1' : ''}`} src="./chat_button.png"/>
-          <img className={`chat-button ${chatloading ? 'rocket2' : ''}`} src="./chat_button.png"/>
+        <ChatButtonContainer onClick={handleChat}>
+          {chatloading ? <span className="loading"/> : <img src="./chat_button.png"/>} 
         </ChatButtonContainer>
       </InputContainer>
     </ChatContainer>
