@@ -108,9 +108,11 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     if (chatloading) {
       ctrlRef.current?.abort();
       setChatLoading(false);
-      chatMessages.pop();
-      const newAIMsg: MessageType = { message: { content: 'W3AI is aborted!' },  who: "ai", type: ChatTypes.SESSION };
-      setChatMessages([...chatMessages, newAIMsg]);
+      let lastChatMsg = chatMessages.pop()!;
+      if (lastChatMsg.loading) {
+        lastChatMsg = { message: { content: 'W3AI is aborted!' },  who: "ai", type: ChatTypes.SESSION };
+      }
+      setChatMessages([...chatMessages, lastChatMsg]);
     }
   }
   return {
