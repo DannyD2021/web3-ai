@@ -100,7 +100,7 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
         setChatLoading(false);
         console.log('EventSource err: ', err);
       },
-      openWhenHidden: false
+      openWhenHidden: true
     });
   }, 500);
 
