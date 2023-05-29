@@ -74,9 +74,17 @@ export const RecommendsContainer = styled.div`
   margin-bottom: 16px;
 
   .recommend-content {
-    padding: 12px;
+    padding: 8px;
+    padding-left: 24px;
     border-bottom: 1px solid #2E4564;
     cursor: pointer;
+    position: relative;
+
+    .fire {
+      position: absolute;
+      color: #F36B08;
+      left: 4px;
+    }
   }
 `
 

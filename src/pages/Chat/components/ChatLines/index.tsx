@@ -22,6 +22,8 @@ import { ChatTypes, MessageType } from "@/store/chat";
 import { ANALYTICS_HOST } from "@/const";
 import { THUMB_TYPES } from "@/apis/types";
 import Trade from "../Trade";
+import TableView from "../TableView";
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 
 const ChatConfig: any = {
   ai: {
@@ -38,9 +40,9 @@ const ChatConfig: any = {
 const MsgBlock = ({ msg, id }: { msg: MessageType, id: number }) => {
   const { address, isConnected } = useAccount();
   const { who, message, loading, type } = msg || {};
-  const { content, messageId, chartIds = [] } = message || {};
+  const { content, messageId, chartIds = [], chartData } = message || {};
   const className = ChatConfig[who].className;
-  const showThumbs = isConnected && id > 1 && who === 'ai' && !loading;
+  const showThumbs = isConnected && messageId && id > 1 && who === 'ai' && !loading;
   const [thumbs, setThumbs] = useState({
     thumbDown: false,
     thumbUp: false,
@@ -72,6 +74,7 @@ const MsgBlock = ({ msg, id }: { msg: MessageType, id: number }) => {
             <ThumbsBlock onClick={() => onThumbs(THUMB_TYPES.UP)}><ThumbUpAltIcon className={`icon ${thumbs.thumbUp ? 'actived' : ''}`} /></ThumbsBlock>
           </ThumbsContainer>
         )}
+        {(chartData && chartData.type === 'table') && <TableView data={chartData.data}/> }
       </>
     )
   }
@@ -116,6 +119,7 @@ const ChatLines = ({ chatMsgs, sendMessage }: { chatMsgs: MessageType[], sendMes
             onClick={() => sendMessage(reco.title)}
             key={index}
             className="recommend-content">
+              {index === 0 && <span className="fire"><LocalFireDepartmentIcon fontSize="small"/></span>}
             {reco.title}
           </div>
         ))}

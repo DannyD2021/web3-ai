@@ -15,6 +15,7 @@ export interface MessageType {
     chartIds?: number[];
     sql?: string;
     messageId?: number;
+    chartData?: any;
   };
   loading?: boolean
   type?: ChatTypes
@@ -90,6 +91,11 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
         if (msg.event === 'db') {
           const msgData = JSON.parse(msg.data);
           newAIMsg!.message!.messageId = msgData.messageId;
+          setChatMessages(originMsgs.concat(newUserMsg, newAIMsg));
+        }
+        if (msg.event === 'chart_data') {
+          const chartData = JSON.parse(msg.data);
+          newAIMsg!.message!.chartData = chartData;
           setChatMessages(originMsgs.concat(newUserMsg, newAIMsg));
         }
       },
