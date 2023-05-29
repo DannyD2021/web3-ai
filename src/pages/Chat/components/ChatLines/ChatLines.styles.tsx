@@ -75,7 +75,7 @@ export const RecommendsContainer = styled.div`
 
   .recommend-content {
     padding: 8px;
-    padding-left: 24px;
+    padding-left: 30px;
     border-bottom: 1px solid #2E4564;
     cursor: pointer;
     position: relative;
