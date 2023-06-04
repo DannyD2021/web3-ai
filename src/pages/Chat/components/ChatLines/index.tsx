@@ -16,7 +16,8 @@ import {
   RecommendsContainer,
   ChartIframe,
   ThumbsContainer,
-  ThumbsBlock
+  ThumbsBlock,
+  FooterContainer
 } from './ChatLines.styles';
 import { ChatTypes, MessageType } from "@/store/chat";
 import { ANALYTICS_HOST } from "@/const";
@@ -24,6 +25,7 @@ import { THUMB_TYPES } from "@/apis/types";
 import Trade from "../Trade";
 import TableView from "../TableView";
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
+import CopyToClipboardButton from "@/components/CopyToClickButton";
 
 const ChatConfig: any = {
   ai: {
@@ -68,13 +70,17 @@ const MsgBlock = ({ msg, id }: { msg: MessageType, id: number }) => {
         {content && <ChatContent dangerouslySetInnerHTML={{ __html: convertNewLines(content) }} />}
         {loading && <DotLoading text="W3AI is thinking" />}
         {chartIds?.length > 0 && <ChartIframe height={chartIds.length * 450 + 0.5} src={`${ANALYTICS_HOST}/public/charts?chart_ids=${chartIds.join(',')}`} />}
+
         {showThumbs && (
-          <ThumbsContainer>
-            <ThumbsBlock onClick={() => onThumbs(THUMB_TYPES.DOWN)}><ThumbDownAltIcon className={`icon ${thumbs.thumbDown ? 'actived' : ''}`} /></ThumbsBlock>
-            <ThumbsBlock onClick={() => onThumbs(THUMB_TYPES.UP)}><ThumbUpAltIcon className={`icon ${thumbs.thumbUp ? 'actived' : ''}`} /></ThumbsBlock>
-          </ThumbsContainer>
+          <FooterContainer>
+            <CopyToClipboardButton text={content} />
+            <ThumbsContainer>
+              <ThumbsBlock onClick={() => onThumbs(THUMB_TYPES.DOWN)}><ThumbDownAltIcon className={`icon ${thumbs.thumbDown ? 'actived' : ''}`} /></ThumbsBlock>
+              <ThumbsBlock onClick={() => onThumbs(THUMB_TYPES.UP)}><ThumbUpAltIcon className={`icon ${thumbs.thumbUp ? 'actived' : ''}`} /></ThumbsBlock>
+            </ThumbsContainer>
+          </FooterContainer>
         )}
-        {(chartData && chartData.type === 'table') && <TableView data={chartData.data}/> }
+        {(chartData && chartData.type === 'table') && <TableView data={chartData.data} />}
       </>
     )
   }
@@ -119,7 +125,7 @@ const ChatLines = ({ chatMsgs, sendMessage }: { chatMsgs: MessageType[], sendMes
             onClick={() => sendMessage(reco.title)}
             key={index}
             className="recommend-content">
-              {index === 0 && <span className="fire"><LocalFireDepartmentIcon fontSize="small"/></span>}
+            {index === 0 && <span className="fire"><LocalFireDepartmentIcon fontSize="small" /></span>}
             {reco.title}
           </div>
         ))}

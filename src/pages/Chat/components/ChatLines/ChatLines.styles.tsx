@@ -94,6 +94,13 @@ export const ChartIframe = styled.iframe`
   background: #2b374c;
 `;
 
+export const FooterContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
 export const ThumbsContainer = styled.div`
   margin: 10px 0;
   display: flex;
