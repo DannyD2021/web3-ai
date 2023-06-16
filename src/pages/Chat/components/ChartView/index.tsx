@@ -8,8 +8,8 @@ const ChartViewContainer = styled.div`
 `
 
 
-const chartLineData = {
-    "type": "chart",
+const counterChartData = {
+    "type": "counter",
     "title": "The price and market cap of PEPE coin",
     "render_type": "line",
     "data": [

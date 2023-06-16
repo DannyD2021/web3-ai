@@ -25,6 +25,7 @@ import { THUMB_TYPES } from "@/apis/types";
 import Trade from "../Trade";
 import TableView from "../TableView";
 import ChartView from "../ChartView";
+import CounterView from "../CounterView";
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import CopyToClipboardButton from "@/components/CopyToClickButton";
 
@@ -82,6 +83,8 @@ const MsgBlock = ({ msg, id }: { msg: MessageType, id: number }) => {
         )}
         {(chartData && chartData.type === 'table') && <TableView chartData={chartData} />}
         {(chartData && chartData.type === 'chart') && <ChartView chartData={chartData} />}
+        {(chartData && chartData.type === 'chart') && <CounterView chartData={chartData} />}
+        {/* <CounterView chartData={chartData} /> */}
       </>
     )
   }
