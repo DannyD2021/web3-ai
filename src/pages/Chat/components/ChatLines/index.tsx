@@ -83,7 +83,7 @@ const MsgBlock = ({ msg, id }: { msg: MessageType, id: number }) => {
         )}
         {(chartData && chartData.type === 'table') && <TableView chartData={chartData} />}
         {(chartData && chartData.type === 'chart') && <ChartView chartData={chartData} />}
-        {(chartData && chartData.type === 'chart') && <CounterView chartData={chartData} />}
+        {(chartData && chartData.type === 'counter') && <CounterView chartData={chartData} />}
         {/* <CounterView chartData={chartData} /> */}
       </>
     )
