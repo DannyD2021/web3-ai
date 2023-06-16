@@ -6,6 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { RoofingTwoTone } from "@mui/icons-material";
 
 const TableViewContainer = styled.div`
     margin-top: 10px;
@@ -27,7 +28,8 @@ const TableViewContainer = styled.div`
 
 `
 
-const TableView = ({ data = [] }) => {
+const TableView = ({ chartData }: any) => {
+    const data = chartData.data || [];
     if (data.length === 0) return null;
     const columnHeaders = Object.keys(data[0]);
     return (
@@ -39,11 +41,11 @@ const TableView = ({ data = [] }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {data.map((row, index) => (
+                    {data.map((row: any, index: number) => (
                         <TableRow
                             key={index}
                         >
-                            {columnHeaders.map(header => <TableCell key={header}>{(row as any)[header]}</TableCell>)}
+                            {columnHeaders.map(header => <TableCell key={header}>{row[header]}</TableCell>)}
                         </TableRow>
                     ))}
                 </TableBody>

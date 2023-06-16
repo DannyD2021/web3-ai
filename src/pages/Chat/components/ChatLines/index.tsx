@@ -24,6 +24,7 @@ import { ANALYTICS_HOST } from "@/const";
 import { THUMB_TYPES } from "@/apis/types";
 import Trade from "../Trade";
 import TableView from "../TableView";
+import ChartView from "../ChartView";
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import CopyToClipboardButton from "@/components/CopyToClickButton";
 
@@ -37,7 +38,6 @@ const ChatConfig: any = {
     label: "You",
   },
 };
-
 
 const MsgBlock = ({ msg, id }: { msg: MessageType, id: number }) => {
   const { address, isConnected } = useAccount();
@@ -80,7 +80,8 @@ const MsgBlock = ({ msg, id }: { msg: MessageType, id: number }) => {
             </ThumbsContainer>
           </FooterContainer>
         )}
-        {(chartData && chartData.type === 'table') && <TableView data={chartData.data} />}
+        {(chartData && chartData.type === 'table') && <TableView chartData={chartData} />}
+        {(chartData && chartData.type === 'chart') && <ChartView chartData={chartData} />}
       </>
     )
   }
