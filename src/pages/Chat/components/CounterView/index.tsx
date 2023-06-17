@@ -22,19 +22,12 @@ const counterChartData: any = {
     "chart_id": 14399,
     "type": "counter",
     "title": "24 Hour Change Wintermute's Portfolio Allocation",
-    "render_options": {
-        "id": 1577448,
-        "type": "counter",
-        "name": "Wintermute's Portfolio Value",
-        "options": {
-            "rowNumber": 1,
-            "stringPrefix": "$",
-            "stringSuffix": "",
-            "stringDecimal": 2,
-            "counterColName": "cumulative_24h_change"
-        },
-        "created_at": "2022-06-12T04:53:16.422952+00:00",
-        "__typename": "visualizations"
+    "options": {
+        "rowNumber": 1,
+        "stringPrefix": "$",
+        "stringSuffix": "",
+        "stringDecimal": 2,
+        "counterColName": "cumulative_24h_change",
     },
     "data": [
         {
@@ -57,11 +50,11 @@ const counterChartData: any = {
             "cumulative_24h_change": -4084069.7198778368
         },
     ]
-  }
+}
 
 const CounterView = ({ chartData }: any) => {
-    const { data = [], title, render_options = {} } = chartData || counterChartData;
-    const { stringPrefix = '', stringDecimal = 2, counterColName = '' } = render_options?.options || {};
+    const { data = [], title, options = {} } = chartData || counterChartData;
+    const { stringPrefix = '', stringDecimal = 2, counterColName = '' } = options || {};
     const counterValue = data?.[0]?.[counterColName] || 0;
     return (
         <CounterViewContainer>

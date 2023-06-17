@@ -97,7 +97,6 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
           const chartData = JSON.parse(msg.data);
           newAIMsg!.message!.chartData = chartData;
           setChatMessages(originMsgs.concat(newUserMsg, newAIMsg));
-          console.log('chartData: ', chartData);
         }
       },
       onclose() {
