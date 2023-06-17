@@ -21,11 +21,11 @@ const DUNE_ECHARTS_MAPPING: any = {
 }
 
 const ChartView = ({ chartData }: any) => {
-    const { data = [], title, render_options = {}, render_type } = chartData || pieData;
-    const { columnMapping, seriesOptions, yAxis, legend, globalSeriesType } = render_options || {};
+    const { data = [], title, options = {}, render_type } = chartData || pieData;
+    const { columnMapping, seriesOptions, yAxis, legend, globalSeriesType } = options || {};
     const columns = Object.keys(data[0]);
     const renderChart = () => {
-        if (['area', 'line', 'column'].includes(render_type)) {
+        if (['area', 'line', 'column', 'scatter'].includes(render_type)) {
             let seriesNames = Object.keys(seriesOptions);
             const columnMappingX = [];
             const columnMappingY = [];
@@ -111,7 +111,6 @@ const ChartView = ({ chartData }: any) => {
                 yAxis: yAxisFormat,
                 series,
             };
-            console.log('option: ', option);
             return <ReactECharts option={option} />
         }
         if (['pie'].includes(render_type)) {
@@ -168,7 +167,6 @@ const ChartView = ({ chartData }: any) => {
                 ]
 
             }
-            console.log('option: ', option);
             return <ReactECharts option={option} />
         }
         return ''

@@ -4,7 +4,7 @@ export const lineData = {
     "type": "chart",
     "title": "ChartCustom NFT Floor Tracker",
     "render_type": "line",
-    "render_options": {
+    "options": {
         "sortX": true,
         "xAxis": {
             "type": "-",
@@ -146,7 +146,7 @@ export const areaData = {
     "type": "chart",
     "title": "TREASURY vs LPELEPHANT LP Detailed DuneV2",
     "render_type": "area",
-    "render_options": {
+    "options": {
         "sortX": true,
         "xAxis": {
             "type": "-"
@@ -895,7 +895,7 @@ export const columnData = {
     "type": "chart",
     "title": "ChartEM Futures - Wallets",
     "render_type": "column",
-    "render_options": {
+    "options": {
         "sortX": true,
         "xAxis": {
             "type": "-"
@@ -1453,7 +1453,7 @@ export const pieData = {
     "type": "chart",
     "title": "Allocation ChartJump's Portfolio Allocation Pie",
     "render_type": "pie",
-    "render_options": {
+    "options": {
         "sortX": true,
         "xAxis": {
             "type": "-"
@@ -1530,5 +1530,670 @@ export const pieData = {
             "token": "WETH",
             "amount_value": 1356783717.395102
         }
+    ]
+}
+
+export const scatterData = {
+    "chart_id": 10401, // https://dune.com/queries/2195649/3602099
+    "type": "chart",
+    "title": "Allocation ChartJump's Portfolio Allocation Pie",
+    "render_type": "scatter",
+    "options": {
+        "sortX": true,
+        "xAxis": {
+            "type": "-",
+            "title": {
+                "text": "Date"
+            }
+        },
+        "yAxis": [
+            {
+                "type": "-",
+                "title": {
+                    "text": "Price (ETH)"
+                }
+            }
+        ],
+        "legend": {
+            "enabled": true
+        },
+        "reverseX": false,
+        "columnMapping": {
+            "sale_type": "series",
+            "trade_day": "x",
+            "amount_original": "y"
+        },
+        "seriesOptions": {
+            "metric": {
+                "name": "Average",
+                "type": "line",
+                "yAxis": 0,
+                "zIndex": 1
+            },
+            "individual": {
+                "name": "Individual",
+                "type": "scatter",
+                "color": "#141da3",
+                "yAxis": 0,
+                "zIndex": 0
+            }
+        },
+        "valuesOptions": {},
+        "showDataLabels": false,
+        "globalSeriesType": "scatter"
+    },
+    "data": [
+        {
+            "trade_day": "2022-05-29 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.077475,
+            "sale_type": "metric"
+        },
+        {
+            "trade_day": "2022-09-19 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.0740308989569067,
+            "sale_type": "metric"
+        },
+        {
+            "trade_day": "2021-08-08 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.31,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2023-05-12 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 4.15,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-09-06 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.24,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2023-05-20 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 5.16,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-21 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.6,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-08 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.475,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-03-27 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.98,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-08 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.34,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-08 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.71,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-21 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.79,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-12-11 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.379,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2023-05-20 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 8,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2023-03-10 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 5.28,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-04-28 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.45,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-11-18 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.9821657688134215,
+            "sale_type": "metric"
+        },
+        {
+            "trade_day": "2022-08-18 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.983891198432484,
+            "sale_type": "metric"
+        },
+        {
+            "trade_day": "2021-10-14 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.2,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-09 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.15,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-10-14 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 4.25,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-09 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.99,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-14 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.739,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-09 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.474,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-08-18 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.8,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-08-23 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 4.75,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-14 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.22,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-05-28 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 4.2,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-03-26 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.15,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-08-18 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.9,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2023-04-16 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 5.89,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-11-05 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 4.2069,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2023-03-20 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 7.049511826086957,
+            "sale_type": "metric"
+        },
+        {
+            "trade_day": "2023-02-03 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 6.6027471857148,
+            "sale_type": "metric"
+        },
+        {
+            "trade_day": "2022-05-13 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.3,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-12-01 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.4999,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-02-02 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.59,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-07 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.388,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-20 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 5,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-07 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.48,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-10-13 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.11,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-10-21 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 5.75,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-12-10 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 7,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-07 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.46,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2023-06-07 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 4.4987,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-12-02 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.3498565217391305,
+            "sale_type": "metric"
+        },
+        {
+            "trade_day": "2023-02-23 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 5.424265555555555,
+            "sale_type": "metric"
+        },
+        {
+            "trade_day": "2022-04-05 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.7849259717314485,
+            "sale_type": "metric"
+        },
+        {
+            "trade_day": "2022-11-07 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.1295497639483,
+            "sale_type": "metric"
+        },
+        {
+            "trade_day": "2022-09-15 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 4.05,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2023-02-28 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 5.45,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-24 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 4.254271875,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2023-04-22 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.488,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-08-20 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 4,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-10-13 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.15,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-10-30 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.09,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-05-04 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.74,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-10-17 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.8,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-08-20 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.44,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-11-15 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.429,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-06-10 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.9373,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-10-13 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.489,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-04-05 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.65,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-11-07 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.19,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-01-08 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 4.1,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-10-29 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.5,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-12-26 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.74,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-12-26 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.645,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-12-26 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.96,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-03-28 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.26,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-11-16 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.6748129032258061,
+            "sale_type": "metric"
+        },
+        {
+            "trade_day": "2023-03-19 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 5.99,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-09 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.8,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-08-18 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.4,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-14 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.8,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-14 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 4.25,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-14 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.79,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-11-09 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.47,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-04-11 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.38,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2023-04-16 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 4.07,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2023-04-17 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.899,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2023-01-19 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 6,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2023-02-08 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 5.75,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-14 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.47,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2023-02-14 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 5.574744634414564,
+            "sale_type": "metric"
+        },
+        {
+            "trade_day": "2021-11-04 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.4137692307692307,
+            "sale_type": "metric"
+        },
+        {
+            "trade_day": "2021-08-01 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.009,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-09 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.1212,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-01 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.0147,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-08-23 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.99,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2023-02-01 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 5.29,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-14 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 3.85,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-11-16 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.5,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-11-17 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.75,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-12-09 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 4.19,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-05-28 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 15,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-09 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.498,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-08-05 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 1.78,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-02-25 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.8897,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-03-13 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 0.85,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2021-08-09 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 2.22,
+            "sale_type": "individual"
+        },
+        {
+            "trade_day": "2022-12-09 00:00:00.000 UTC",
+            "currency": "ETH",
+            "amount_original": 4.32,
+            "sale_type": "individual"
+        },
     ]
 }
