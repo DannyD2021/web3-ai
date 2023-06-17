@@ -3,7 +3,6 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@ant-design/charts": "^1.4.2",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@microsoft/fetch-event-source": "^2.0.1",
@@ -13,6 +12,8 @@
     "@web3modal/react": "^2.3.7",
     "axios": "^1.4.0",
     "craco": "^0.0.3",
+    "echarts": "^5.4.2",
+    "echarts-for-react": "^3.0.2",
     "ethers": "^5.7.2",
     "hox": "^2.1.0",
     "linkify-html": "^4.1.1",
