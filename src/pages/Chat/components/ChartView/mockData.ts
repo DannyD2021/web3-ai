@@ -1447,3 +1447,88 @@ export const columnData = {
         },
     ]
 }
+
+export const pieData = {
+    "chart_id": 14400, // https://dune.com/queries/913216/1596868
+    "type": "chart",
+    "title": "Allocation ChartJump's Portfolio Allocation Pie",
+    "render_type": "pie",
+    "render_options": {
+        "sortX": true,
+        "xAxis": {
+            "type": "-"
+        },
+        "yAxis": [
+            {
+                "type": "linear"
+            }
+        ],
+        "legend": {
+            "enabled": true
+        },
+        "reverseX": false,
+        "numberFormat": "$0[,.].0",
+        "columnMapping": {
+            "": "y",
+            "time": "x",
+            "token": "x",
+            "amount_value": "y",
+            "cumulative_cel_balance": "y",
+            "cumulative_usdt_balance": "y"
+        },
+        "seriesOptions": {},
+        "valuesOptions": {},
+        "showDataLabels": false,
+        "globalSeriesType": "pie"
+    },
+    "data": [
+        {
+            "token": "BIT",
+            "amount_value": 58242094.03557129
+        },
+        {
+            "token": "BNB",
+            "amount_value": 0.000000014901161193847656
+        },
+        {
+            "token": "BUSD",
+            "amount_value": 6123050.497056849
+        },
+        {
+            "token": "ETH",
+            "amount_value": -3964456466.233745
+        },
+        {
+            "token": "FTT",
+            "amount_value": -0.00000000045440629037329927
+        },
+        {
+            "token": "Other",
+            "amount_value": 22242246.757078785
+        },
+        {
+            "token": "SHIB",
+            "amount_value": 498548.3804819405
+        },
+        {
+            "token": "SRM",
+            "amount_value": 0.03092246241067187
+        },
+        {
+            "token": "USDC",
+            "amount_value": 28814131.645110566
+        },
+        {
+            "token": "USDT",
+            "amount_value": 45879812.18968103
+        },
+        {
+            "token": "WBTC",
+            "amount_value": 5805744.819417287
+        },
+        {
+            "token": "WETH",
+            "amount_value": 1356783717.395102
+        }
+    ]
+}

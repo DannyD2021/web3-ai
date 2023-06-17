@@ -1,7 +1,7 @@
 import React from "react";
 import styled from '@emotion/styled';
 import _ from "underscore";
-import { lineData, areaData, columnData } from "./mockData";
+import { lineData, areaData, columnData, pieData } from "./mockData";
 import ReactECharts from 'echarts-for-react';
 
 const ChartViewContainer = styled.div`
@@ -11,7 +11,6 @@ const ChartViewContainer = styled.div`
     text-align: center;
     h2 {
         color: #8296d1;
-        margin-bottom: 15px;
     }
 `
 
@@ -22,7 +21,7 @@ const DUNE_ECHARTS_MAPPING: any = {
 }
 
 const ChartView = ({ chartData }: any) => {
-    const { data = [], title, render_options = {}, render_type } = chartData || columnData;
+    const { data = [], title, render_options = {}, render_type } = chartData || pieData;
     const { columnMapping, seriesOptions, yAxis, legend, globalSeriesType } = render_options || {};
     const columns = Object.keys(data[0]);
     const renderChart = () => {
@@ -38,14 +37,14 @@ const ChartView = ({ chartData }: any) => {
                     columnMappingY.push(key);
                 }
             }
-            
+
             const xField = _.intersection(columns, columnMappingX)[0];
             // speical case, seriesOptions's key is not in columns
             seriesNames = _.intersection(columns, seriesNames);
             if (seriesNames.length === 0) {
                 seriesNames = _.intersection(columns, columnMappingY);
             }
-            
+
             const yAxisFormat = yAxis.map((axis: any, index: number) => {
                 return {
                     type: 'value',
@@ -112,6 +111,63 @@ const ChartView = ({ chartData }: any) => {
                 yAxis: yAxisFormat,
                 series,
             };
+            console.log('option: ', option);
+            return <ReactECharts option={option} />
+        }
+        if (['pie'].includes(render_type)) {
+            const columnMappingX = [];
+            const columnMappingY = [];
+            for (let key in columnMapping) {
+                if (columnMapping[key] === 'x') {
+                    columnMappingX.push(key);
+                }
+                if (columnMapping[key] === 'y') {
+                    columnMappingY.push(key);
+                }
+            }
+
+            const xField = _.intersection(columns, columnMappingX)[0];
+            const yField = _.intersection(columns, columnMappingY)[0];
+            const seriesData = data.reduce((prev: any, item: any) => {
+                prev.push({
+                    name: item[xField],
+                    value: item[yField],
+                })
+                return prev;
+            }, [])
+            const option = {
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    right: 10,
+                    top: 20,
+                    bottom: 20,
+                    // type: 'scroll',
+                    orient: 'vertical',
+                    show: legend?.enabled,
+                    textStyle: {
+                        color: '#fff',
+                    },
+                },
+                series: [
+                    {
+                        name: 'Access From',
+                        type: 'pie',
+                        radius: ['40%', '70%'],
+                        avoidLabelOverlap: false,
+                        label: {
+                            show: false,
+                            position: 'center'
+                        },
+                        labelLine: {
+                            show: false
+                        },
+                        data: seriesData,
+                    }
+                ]
+
+            }
             console.log('option: ', option);
             return <ReactECharts option={option} />
         }
