@@ -11,6 +11,7 @@ const ChartViewContainer = styled.div`
     text-align: center;
     h2 {
         color: #8296d1;
+        margin-bottom: 5px;
     }
 `
 
@@ -25,149 +26,155 @@ const ChartView = ({ chartData }: any) => {
     const { columnMapping, seriesOptions, yAxis, legend, globalSeriesType } = options || {};
     const columns = Object.keys(data[0]);
     const renderChart = () => {
-        if (['area', 'line', 'column', 'scatter'].includes(render_type)) {
-            let seriesNames = Object.keys(seriesOptions);
-            const columnMappingX = [];
-            const columnMappingY = [];
-            for (let key in columnMapping) {
-                if (columnMapping[key] === 'x') {
-                    columnMappingX.push(key);
-                }
-                if (columnMapping[key] === 'y') {
-                    columnMappingY.push(key);
-                }
-            }
-
-            const xField = _.intersection(columns, columnMappingX)[0];
-            // speical case, seriesOptions's key is not in columns
-            seriesNames = _.intersection(columns, seriesNames);
-            if (seriesNames.length === 0) {
-                seriesNames = _.intersection(columns, columnMappingY);
-            }
-
-            const yAxisFormat = yAxis.map((axis: any, index: number) => {
-                return {
-                    type: 'value',
-                    name: axis.title.text,
-                    position: index % 2 === 0 ? 'left' : 'right',
-                    alignTicks: true,
-                    axisLine: {
-                        show: true,
-                    },
-                }
-            });
-            // handle data
-            const axisDatas = data.reduce((prev: any, item: any) => {
-                // xAxis data
-                if (!prev[xField]) {
-                    prev[xField] = [];
-                }
-                prev[xField].push(item[xField]);
-
-                // series data
-                seriesNames.forEach((seriesNames => {
-                    if (!prev[seriesNames]) {
-                        prev[seriesNames] = [];
+        try {
+            if (['area', 'line', 'column', 'scatter'].includes(render_type)) {
+                let seriesNames = Object.keys(seriesOptions);
+                const columnMappingX = [];
+                const columnMappingY = [];
+                for (let key in columnMapping) {
+                    if (columnMapping[key] === 'x') {
+                        columnMappingX.push(key);
                     }
-                    prev[seriesNames].push(item[seriesNames]);
-                }))
-                return prev;
-            }, {})
-            // config series
-            const series: any = [];
-            seriesNames.forEach((seriesName) => {
-                const seriesConfig = seriesOptions[seriesName];
-                series.push({
-                    name: seriesName,
-                    type: DUNE_ECHARTS_MAPPING[seriesConfig?.type] || DUNE_ECHARTS_MAPPING[globalSeriesType],
-                    areaStyle: seriesConfig?.type === 'area' ? {} : null,
-                    yAxisIndex: seriesConfig?.yAxis || 0,
-                    data: axisDatas[seriesName]
+                    if (columnMapping[key] === 'y') {
+                        columnMappingY.push(key);
+                    }
+                }
+    
+                const xField = _.intersection(columns, columnMappingX)[0];
+                // speical case, seriesOptions's key is not in columns
+                seriesNames = _.intersection(columns, seriesNames);
+                if (seriesNames.length === 0) {
+                    seriesNames = _.intersection(columns, columnMappingY);
+                }
+    
+                const yAxisFormat = yAxis.map((axis: any, index: number) => {
+                    return {
+                        type: 'value',
+                        name: axis.title.text,
+                        position: index % 2 === 0 ? 'left' : 'right',
+                        alignTicks: true,
+                        axisLine: {
+                            show: true,
+                        },
+                    }
+                });
+                // sort data
+                data.sort((item1: any, item2: any) => item1[xField] > item2[xField] ? 1 : -1);
+                // handle data
+                const axisDatas = data.reduce((prev: any, item: any) => {
+                    // xAxis data
+                    if (!prev[xField]) {
+                        prev[xField] = [];
+                    }
+                    prev[xField].push(item[xField]);
+    
+                    // series data
+                    seriesNames.forEach((seriesNames => {
+                        if (!prev[seriesNames]) {
+                            prev[seriesNames] = [];
+                        }
+                        prev[seriesNames].push(item[seriesNames]);
+                    }))
+                    return prev;
+                }, {})
+                // config series
+                const series: any = [];
+                seriesNames.forEach((seriesName) => {
+                    const seriesConfig = seriesOptions[seriesName];
+                    series.push({
+                        name: seriesName,
+                        type: DUNE_ECHARTS_MAPPING[seriesConfig?.type] || DUNE_ECHARTS_MAPPING[globalSeriesType],
+                        areaStyle: seriesConfig?.type === 'area' ? {} : null,
+                        yAxisIndex: seriesConfig?.yAxis || 0,
+                        data: axisDatas[seriesName]
+                    })
                 })
-            })
-            const option = {
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'cross'
-                    }
-                },
-                legend: {
-                    data: seriesNames,
-                    show: legend?.enabled,
-                    textStyle: {
-                        color: '#fff',
+                const option = {
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'cross'
+                        }
                     },
-                },
-                xAxis: [
-                    {
-                        type: 'category',
-                        axisTick: {
-                            alignWithLabel: true
+                    legend: {
+                        data: seriesNames,
+                        show: legend?.enabled,
+                        textStyle: {
+                            color: '#fff',
                         },
-                        data: axisDatas[xField],
-                    }
-                ],
-                yAxis: yAxisFormat,
-                series,
-            };
-            return <ReactECharts option={option} />
-        }
-        if (['pie'].includes(render_type)) {
-            const columnMappingX = [];
-            const columnMappingY = [];
-            for (let key in columnMapping) {
-                if (columnMapping[key] === 'x') {
-                    columnMappingX.push(key);
-                }
-                if (columnMapping[key] === 'y') {
-                    columnMappingY.push(key);
-                }
-            }
-
-            const xField = _.intersection(columns, columnMappingX)[0];
-            const yField = _.intersection(columns, columnMappingY)[0];
-            const seriesData = data.reduce((prev: any, item: any) => {
-                prev.push({
-                    name: item[xField],
-                    value: item[yField],
-                })
-                return prev;
-            }, [])
-            const option = {
-                tooltip: {
-                    trigger: 'item'
-                },
-                legend: {
-                    right: 10,
-                    top: 20,
-                    bottom: 20,
-                    // type: 'scroll',
-                    orient: 'vertical',
-                    show: legend?.enabled,
-                    textStyle: {
-                        color: '#fff',
                     },
-                },
-                series: [
-                    {
-                        name: 'Access From',
-                        type: 'pie',
-                        radius: ['40%', '70%'],
-                        avoidLabelOverlap: false,
-                        label: {
-                            show: false,
-                            position: 'center'
-                        },
-                        labelLine: {
-                            show: false
-                        },
-                        data: seriesData,
-                    }
-                ]
-
+                    xAxis: [
+                        {
+                            type: 'category',
+                            axisTick: {
+                                alignWithLabel: true
+                            },
+                            data: axisDatas[xField],
+                        }
+                    ],
+                    yAxis: yAxisFormat,
+                    series,
+                };
+                return <ReactECharts option={option} />
             }
-            return <ReactECharts option={option} />
+            if (['pie'].includes(render_type)) {
+                const columnMappingX = [];
+                const columnMappingY = [];
+                for (let key in columnMapping) {
+                    if (columnMapping[key] === 'x') {
+                        columnMappingX.push(key);
+                    }
+                    if (columnMapping[key] === 'y') {
+                        columnMappingY.push(key);
+                    }
+                }
+    
+                const xField = _.intersection(columns, columnMappingX)[0];
+                const yField = _.intersection(columns, columnMappingY)[0];
+                const seriesData = data.reduce((prev: any, item: any) => {
+                    prev.push({
+                        name: item[xField],
+                        value: item[yField],
+                    })
+                    return prev;
+                }, [])
+                const option = {
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    legend: {
+                        right: 10,
+                        top: 20,
+                        bottom: 20,
+                        // type: 'scroll',
+                        orient: 'vertical',
+                        show: legend?.enabled,
+                        textStyle: {
+                            color: '#fff',
+                        },
+                    },
+                    series: [
+                        {
+                            name: 'Access From',
+                            type: 'pie',
+                            radius: ['40%', '70%'],
+                            avoidLabelOverlap: false,
+                            label: {
+                                show: false,
+                                position: 'center'
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            data: seriesData,
+                        }
+                    ]
+    
+                }
+                return <ReactECharts option={option} />
+            }
+        } catch(error) {
+            console.error('chart: ', error);
         }
         return ''
     }
