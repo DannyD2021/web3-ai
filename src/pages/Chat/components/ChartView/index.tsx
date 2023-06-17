@@ -50,7 +50,7 @@ const ChartView = ({ chartData }: any) => {
                 const yAxisFormat = yAxis.map((axis: any, index: number) => {
                     return {
                         type: 'value',
-                        name: axis.title.text,
+                        name: axis?.title?.text,
                         position: index % 2 === 0 ? 'left' : 'right',
                         alignTicks: true,
                         axisLine: {
