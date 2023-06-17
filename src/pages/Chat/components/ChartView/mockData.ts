@@ -889,3 +889,561 @@ export const areaData = {
         },
     ]
 }
+
+export const columnData = {
+    "chart_id": 14359, // https://dune.com/queries/1968745/3252672
+    "type": "chart",
+    "title": "ChartEM Futures - Wallets",
+    "render_type": "column",
+    "render_options": {
+        "sortX": true,
+        "xAxis": {
+            "type": "-"
+        },
+        "yAxis": [
+            {
+                "type": "linear",
+                "title": {
+                    "text": "# New Wallets"
+                },
+                "tickFormat": "0.0a"
+            },
+            {
+                "type": "linear",
+                "title": {
+                    "text": "# Wallets"
+                },
+                "tickFormat": "0.0a"
+            }
+        ],
+        "legend": {
+            "enabled": true
+        },
+        "reverseX": false,
+        "numberFormat": "0.0a",
+        "columnMapping": {
+            "day": "x",
+            "cumwallet": "y",
+            "new_wallet": "y"
+        },
+        "seriesOptions": {
+            "cumwallet": {
+                "name": "Total Wallets",
+                "type": "line",
+                "color": "#21bf73",
+                "yAxis": 1,
+                "zIndex": 1
+            },
+            "new_wallet": {
+                "name": "Daily New Wallets",
+                "type": "column",
+                "color": "#015387",
+                "yAxis": 0,
+                "zIndex": 0
+            }
+        },
+        "valuesOptions": {},
+        "showDataLabels": false,
+        "globalSeriesType": "column",
+        "numberFormatRightYAxisSeries": "0.0a"
+    },
+    "data": [
+        {
+            "day": "2023-06-17 00:00:00.000",
+            "Date": "2023-06-17",
+            "new_wallet": 0,
+            "cumwallet": 1431,
+            "delta7d_cumwallet": 42
+        },
+        {
+            "day": "2023-06-16 00:00:00.000",
+            "Date": "2023-06-16",
+            "new_wallet": 11,
+            "cumwallet": 1431,
+            "delta7d_cumwallet": 47
+        },
+        {
+            "day": "2023-06-15 00:00:00.000",
+            "Date": "2023-06-15",
+            "new_wallet": 2,
+            "cumwallet": 1420,
+            "delta7d_cumwallet": 39
+        },
+        {
+            "day": "2023-06-14 00:00:00.000",
+            "Date": "2023-06-14",
+            "new_wallet": 9,
+            "cumwallet": 1418,
+            "delta7d_cumwallet": 42
+        },
+        {
+            "day": "2023-06-13 00:00:00.000",
+            "Date": "2023-06-13",
+            "new_wallet": 3,
+            "cumwallet": 1409,
+            "delta7d_cumwallet": 40
+        },
+        {
+            "day": "2023-06-12 00:00:00.000",
+            "Date": "2023-06-12",
+            "new_wallet": 6,
+            "cumwallet": 1406,
+            "delta7d_cumwallet": 45
+        },
+        {
+            "day": "2023-06-11 00:00:00.000",
+            "Date": "2023-06-11",
+            "new_wallet": 11,
+            "cumwallet": 1400,
+            "delta7d_cumwallet": 48
+        },
+        {
+            "day": "2023-06-10 00:00:00.000",
+            "Date": "2023-06-10",
+            "new_wallet": 5,
+            "cumwallet": 1389,
+            "delta7d_cumwallet": 44
+        },
+        {
+            "day": "2023-06-09 00:00:00.000",
+            "Date": "2023-06-09",
+            "new_wallet": 3,
+            "cumwallet": 1384,
+            "delta7d_cumwallet": 46
+        },
+        {
+            "day": "2023-06-08 00:00:00.000",
+            "Date": "2023-06-08",
+            "new_wallet": 5,
+            "cumwallet": 1381,
+            "delta7d_cumwallet": 53
+        },
+        {
+            "day": "2023-06-07 00:00:00.000",
+            "Date": "2023-06-07",
+            "new_wallet": 7,
+            "cumwallet": 1376,
+            "delta7d_cumwallet": 51
+        },
+        {
+            "day": "2023-06-06 00:00:00.000",
+            "Date": "2023-06-06",
+            "new_wallet": 8,
+            "cumwallet": 1369,
+            "delta7d_cumwallet": 53
+        },
+        {
+            "day": "2023-06-05 00:00:00.000",
+            "Date": "2023-06-05",
+            "new_wallet": 9,
+            "cumwallet": 1361,
+            "delta7d_cumwallet": 55
+        },
+        {
+            "day": "2023-06-04 00:00:00.000",
+            "Date": "2023-06-04",
+            "new_wallet": 7,
+            "cumwallet": 1352,
+            "delta7d_cumwallet": 54
+        },
+        {
+            "day": "2023-06-03 00:00:00.000",
+            "Date": "2023-06-03",
+            "new_wallet": 7,
+            "cumwallet": 1345,
+            "delta7d_cumwallet": 53
+        },
+        {
+            "day": "2023-06-02 00:00:00.000",
+            "Date": "2023-06-02",
+            "new_wallet": 10,
+            "cumwallet": 1338,
+            "delta7d_cumwallet": 54
+        },
+        {
+            "day": "2023-06-01 00:00:00.000",
+            "Date": "2023-06-01",
+            "new_wallet": 3,
+            "cumwallet": 1328,
+            "delta7d_cumwallet": 49
+        },
+        {
+            "day": "2023-05-31 00:00:00.000",
+            "Date": "2023-05-31",
+            "new_wallet": 9,
+            "cumwallet": 1325,
+            "delta7d_cumwallet": 53
+        },
+        {
+            "day": "2023-05-30 00:00:00.000",
+            "Date": "2023-05-30",
+            "new_wallet": 10,
+            "cumwallet": 1316,
+            "delta7d_cumwallet": 51
+        },
+        {
+            "day": "2023-05-29 00:00:00.000",
+            "Date": "2023-05-29",
+            "new_wallet": 8,
+            "cumwallet": 1306,
+            "delta7d_cumwallet": 49
+        },
+        {
+            "day": "2023-05-28 00:00:00.000",
+            "Date": "2023-05-28",
+            "new_wallet": 6,
+            "cumwallet": 1298,
+            "delta7d_cumwallet": 47
+        },
+        {
+            "day": "2023-05-27 00:00:00.000",
+            "Date": "2023-05-27",
+            "new_wallet": 8,
+            "cumwallet": 1292,
+            "delta7d_cumwallet": 49
+        },
+        {
+            "day": "2023-05-26 00:00:00.000",
+            "Date": "2023-05-26",
+            "new_wallet": 5,
+            "cumwallet": 1284,
+            "delta7d_cumwallet": 51
+        },
+        {
+            "day": "2023-05-25 00:00:00.000",
+            "Date": "2023-05-25",
+            "new_wallet": 7,
+            "cumwallet": 1279,
+            "delta7d_cumwallet": 54
+        },
+        {
+            "day": "2023-05-24 00:00:00.000",
+            "Date": "2023-05-24",
+            "new_wallet": 7,
+            "cumwallet": 1272,
+            "delta7d_cumwallet": 53
+        },
+        {
+            "day": "2023-05-23 00:00:00.000",
+            "Date": "2023-05-23",
+            "new_wallet": 8,
+            "cumwallet": 1265,
+            "delta7d_cumwallet": 59
+        },
+        {
+            "day": "2023-05-22 00:00:00.000",
+            "Date": "2023-05-22",
+            "new_wallet": 6,
+            "cumwallet": 1257,
+            "delta7d_cumwallet": 59
+        },
+        {
+            "day": "2023-05-21 00:00:00.000",
+            "Date": "2023-05-21",
+            "new_wallet": 8,
+            "cumwallet": 1251,
+            "delta7d_cumwallet": 67
+        },
+        {
+            "day": "2023-05-20 00:00:00.000",
+            "Date": "2023-05-20",
+            "new_wallet": 10,
+            "cumwallet": 1243,
+            "delta7d_cumwallet": 75
+        },
+        {
+            "day": "2023-05-19 00:00:00.000",
+            "Date": "2023-05-19",
+            "new_wallet": 8,
+            "cumwallet": 1233,
+            "delta7d_cumwallet": 76
+        },
+        {
+            "day": "2023-05-18 00:00:00.000",
+            "Date": "2023-05-18",
+            "new_wallet": 6,
+            "cumwallet": 1225,
+            "delta7d_cumwallet": 76
+        },
+        {
+            "day": "2023-05-17 00:00:00.000",
+            "Date": "2023-05-17",
+            "new_wallet": 13,
+            "cumwallet": 1219,
+            "delta7d_cumwallet": 76
+        },
+        {
+            "day": "2023-05-16 00:00:00.000",
+            "Date": "2023-05-16",
+            "new_wallet": 8,
+            "cumwallet": 1206,
+            "delta7d_cumwallet": 65
+        },
+        {
+            "day": "2023-05-15 00:00:00.000",
+            "Date": "2023-05-15",
+            "new_wallet": 14,
+            "cumwallet": 1198,
+            "delta7d_cumwallet": 69
+        },
+        {
+            "day": "2023-05-14 00:00:00.000",
+            "Date": "2023-05-14",
+            "new_wallet": 16,
+            "cumwallet": 1184,
+            "delta7d_cumwallet": 59
+        },
+        {
+            "day": "2023-05-13 00:00:00.000",
+            "Date": "2023-05-13",
+            "new_wallet": 11,
+            "cumwallet": 1168,
+            "delta7d_cumwallet": 56
+        },
+        {
+            "day": "2023-05-12 00:00:00.000",
+            "Date": "2023-05-12",
+            "new_wallet": 8,
+            "cumwallet": 1157,
+            "delta7d_cumwallet": 56
+        },
+        {
+            "day": "2023-05-11 00:00:00.000",
+            "Date": "2023-05-11",
+            "new_wallet": 6,
+            "cumwallet": 1149,
+            "delta7d_cumwallet": 53
+        },
+        {
+            "day": "2023-05-10 00:00:00.000",
+            "Date": "2023-05-10",
+            "new_wallet": 2,
+            "cumwallet": 1143,
+            "delta7d_cumwallet": 56
+        },
+        {
+            "day": "2023-05-09 00:00:00.000",
+            "Date": "2023-05-09",
+            "new_wallet": 12,
+            "cumwallet": 1141,
+            "delta7d_cumwallet": 58
+        },
+        {
+            "day": "2023-05-08 00:00:00.000",
+            "Date": "2023-05-08",
+            "new_wallet": 4,
+            "cumwallet": 1129,
+            "delta7d_cumwallet": 51
+        },
+        {
+            "day": "2023-05-07 00:00:00.000",
+            "Date": "2023-05-07",
+            "new_wallet": 13,
+            "cumwallet": 1125,
+            "delta7d_cumwallet": 57
+        },
+        {
+            "day": "2023-05-06 00:00:00.000",
+            "Date": "2023-05-06",
+            "new_wallet": 11,
+            "cumwallet": 1112,
+            "delta7d_cumwallet": 47
+        },
+        {
+            "day": "2023-05-05 00:00:00.000",
+            "Date": "2023-05-05",
+            "new_wallet": 5,
+            "cumwallet": 1101,
+            "delta7d_cumwallet": 38
+        },
+        {
+            "day": "2023-05-04 00:00:00.000",
+            "Date": "2023-05-04",
+            "new_wallet": 9,
+            "cumwallet": 1096,
+            "delta7d_cumwallet": 43
+        },
+        {
+            "day": "2023-05-03 00:00:00.000",
+            "Date": "2023-05-03",
+            "new_wallet": 4,
+            "cumwallet": 1087,
+            "delta7d_cumwallet": 38
+        },
+        {
+            "day": "2023-05-02 00:00:00.000",
+            "Date": "2023-05-02",
+            "new_wallet": 5,
+            "cumwallet": 1083,
+            "delta7d_cumwallet": 43
+        },
+        {
+            "day": "2023-05-01 00:00:00.000",
+            "Date": "2023-05-01",
+            "new_wallet": 10,
+            "cumwallet": 1078,
+            "delta7d_cumwallet": 42
+        },
+        {
+            "day": "2023-04-30 00:00:00.000",
+            "Date": "2023-04-30",
+            "new_wallet": 3,
+            "cumwallet": 1068,
+            "delta7d_cumwallet": 36
+        },
+        {
+            "day": "2023-04-29 00:00:00.000",
+            "Date": "2023-04-29",
+            "new_wallet": 2,
+            "cumwallet": 1065,
+            "delta7d_cumwallet": 37
+        },
+        {
+            "day": "2023-04-28 00:00:00.000",
+            "Date": "2023-04-28",
+            "new_wallet": 10,
+            "cumwallet": 1063,
+            "delta7d_cumwallet": 43
+        },
+        {
+            "day": "2023-04-27 00:00:00.000",
+            "Date": "2023-04-27",
+            "new_wallet": 4,
+            "cumwallet": 1053,
+            "delta7d_cumwallet": 38
+        },
+        {
+            "day": "2023-04-26 00:00:00.000",
+            "Date": "2023-04-26",
+            "new_wallet": 9,
+            "cumwallet": 1049,
+            "delta7d_cumwallet": 36
+        },
+        {
+            "day": "2023-04-25 00:00:00.000",
+            "Date": "2023-04-25",
+            "new_wallet": 4,
+            "cumwallet": 1040,
+            "delta7d_cumwallet": 33
+        },
+        {
+            "day": "2023-04-24 00:00:00.000",
+            "Date": "2023-04-24",
+            "new_wallet": 4,
+            "cumwallet": 1036,
+            "delta7d_cumwallet": 35
+        },
+        {
+            "day": "2023-04-23 00:00:00.000",
+            "Date": "2023-04-23",
+            "new_wallet": 4,
+            "cumwallet": 1032,
+            "delta7d_cumwallet": 38
+        },
+        {
+            "day": "2023-04-22 00:00:00.000",
+            "Date": "2023-04-22",
+            "new_wallet": 8,
+            "cumwallet": 1028,
+            "delta7d_cumwallet": 44
+        },
+        {
+            "day": "2023-04-21 00:00:00.000",
+            "Date": "2023-04-21",
+            "new_wallet": 5,
+            "cumwallet": 1020,
+            "delta7d_cumwallet": 39
+        },
+        {
+            "day": "2023-04-20 00:00:00.000",
+            "Date": "2023-04-20",
+            "new_wallet": 2,
+            "cumwallet": 1015,
+            "delta7d_cumwallet": 40
+        },
+        {
+            "day": "2023-04-19 00:00:00.000",
+            "Date": "2023-04-19",
+            "new_wallet": 6,
+            "cumwallet": 1013,
+            "delta7d_cumwallet": 41
+        },
+        {
+            "day": "2023-04-18 00:00:00.000",
+            "Date": "2023-04-18",
+            "new_wallet": 6,
+            "cumwallet": 1007,
+            "delta7d_cumwallet": 40
+        },
+        {
+            "day": "2023-04-17 00:00:00.000",
+            "Date": "2023-04-17",
+            "new_wallet": 7,
+            "cumwallet": 1001,
+            "delta7d_cumwallet": 41
+        },
+        {
+            "day": "2023-04-16 00:00:00.000",
+            "Date": "2023-04-16",
+            "new_wallet": 10,
+            "cumwallet": 994,
+            "delta7d_cumwallet": 40
+        },
+        {
+            "day": "2023-04-15 00:00:00.000",
+            "Date": "2023-04-15",
+            "new_wallet": 3,
+            "cumwallet": 984,
+            "delta7d_cumwallet": 33
+        },
+        {
+            "day": "2023-04-14 00:00:00.000",
+            "Date": "2023-04-14",
+            "new_wallet": 6,
+            "cumwallet": 981,
+            "delta7d_cumwallet": 36
+        },
+        {
+            "day": "2023-04-13 00:00:00.000",
+            "Date": "2023-04-13",
+            "new_wallet": 3,
+            "cumwallet": 975,
+            "delta7d_cumwallet": 43
+        },
+        {
+            "day": "2023-04-12 00:00:00.000",
+            "Date": "2023-04-12",
+            "new_wallet": 5,
+            "cumwallet": 972,
+            "delta7d_cumwallet": 46
+        },
+        {
+            "day": "2023-04-11 00:00:00.000",
+            "Date": "2023-04-11",
+            "new_wallet": 7,
+            "cumwallet": 967,
+            "delta7d_cumwallet": 45
+        },
+        {
+            "day": "2023-04-10 00:00:00.000",
+            "Date": "2023-04-10",
+            "new_wallet": 6,
+            "cumwallet": 960,
+            "delta7d_cumwallet": 45
+        },
+        {
+            "day": "2023-04-09 00:00:00.000",
+            "Date": "2023-04-09",
+            "new_wallet": 3,
+            "cumwallet": 954,
+            "delta7d_cumwallet": 41
+        },
+        {
+            "day": "2023-04-08 00:00:00.000",
+            "Date": "2023-04-08",
+            "new_wallet": 6,
+            "cumwallet": 951,
+            "delta7d_cumwallet": 43
+        },
+    ]
+}

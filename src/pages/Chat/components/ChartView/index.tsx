@@ -1,7 +1,7 @@
 import React from "react";
 import styled from '@emotion/styled';
 import _ from "underscore";
-import { lineData, areaData } from "./mockData";
+import { lineData, areaData, columnData } from "./mockData";
 import ReactECharts from 'echarts-for-react';
 
 const ChartViewContainer = styled.div`
@@ -15,12 +15,18 @@ const ChartViewContainer = styled.div`
     }
 `
 
+const DUNE_ECHARTS_MAPPING: any = {
+    line: 'line',
+    area: 'line',
+    column: 'bar',
+}
+
 const ChartView = ({ chartData }: any) => {
-    const { data = [], title, render_options = {}, render_type } = chartData || areaData;
-    const { columnMapping, seriesOptions, yAxis, legend } = render_options || {};
+    const { data = [], title, render_options = {}, render_type } = chartData || columnData;
+    const { columnMapping, seriesOptions, yAxis, legend, globalSeriesType } = render_options || {};
     const columns = Object.keys(data[0]);
     const renderChart = () => {
-        if (['area', 'line'].includes(render_type)) {
+        if (['area', 'line', 'column'].includes(render_type)) {
             let seriesNames = Object.keys(seriesOptions);
             const columnMappingX = [];
             const columnMappingY = [];
@@ -74,7 +80,7 @@ const ChartView = ({ chartData }: any) => {
                 const seriesConfig = seriesOptions[seriesName];
                 series.push({
                     name: seriesName,
-                    type: 'line',
+                    type: DUNE_ECHARTS_MAPPING[seriesConfig?.type] || DUNE_ECHARTS_MAPPING[globalSeriesType],
                     areaStyle: seriesConfig?.type === 'area' ? {} : null,
                     yAxisIndex: seriesConfig?.yAxis || 0,
                     data: axisDatas[seriesName]
