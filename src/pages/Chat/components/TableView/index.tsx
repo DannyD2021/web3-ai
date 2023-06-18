@@ -6,7 +6,8 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { RoofingTwoTone } from "@mui/icons-material";
+import TableFooter from '@mui/material/TableFooter';
+import TablePagination from '@mui/material/TablePagination';
 
 const TableViewContainer = styled.div`
     margin-top: 10px;
@@ -28,10 +29,28 @@ const TableViewContainer = styled.div`
 
 `
 
+const ROWS_PER_PAGE = 10;
 const TableView = ({ chartData }: any) => {
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(ROWS_PER_PAGE);
     const data = chartData.data || [];
     if (data.length === 0) return null;
     const columnHeaders = Object.keys(data[0]);
+
+    const handleChangePage = (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+    ) => {
+        setPage(newPage);
+    };
+    const handleChangeRowsPerPage = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+
+
     return (
         <TableContainer component={TableViewContainer}>
             <Table>
@@ -41,7 +60,7 @@ const TableView = ({ chartData }: any) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {data.map((row: any, index: number) => (
+                    {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: any, index: number) => (
                         <TableRow
                             key={index}
                         >
@@ -49,6 +68,18 @@ const TableView = ({ chartData }: any) => {
                         </TableRow>
                     ))}
                 </TableBody>
+                <TableFooter>
+                    <TableRow>
+                        <TablePagination
+                            align="left"
+                            count={data.length}
+                            rowsPerPage={rowsPerPage}
+                            onRowsPerPageChange={handleChangeRowsPerPage}
+                            page={page}
+                            onPageChange={handleChangePage}
+                        />
+                    </TableRow>
+                </TableFooter>
             </Table>
         </TableContainer>
     )
