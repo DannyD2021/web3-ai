@@ -27,7 +27,7 @@ const ChartView = ({ chartData }: any) => {
     const columns = Object.keys(data[0]);
     const renderChart = () => {
         try {
-            if (['area', 'line', 'column', 'scatter'].includes(render_type)) {
+            if (['area', 'line', 'column'].includes(render_type)) {
                 let seriesNames = Object.keys(seriesOptions);
                 const columnMappingX = [];
                 const columnMappingY = [];
@@ -86,6 +86,7 @@ const ChartView = ({ chartData }: any) => {
                         type: DUNE_ECHARTS_MAPPING[seriesConfig?.type] || DUNE_ECHARTS_MAPPING[globalSeriesType],
                         areaStyle: seriesConfig?.type === 'area' ? {} : null,
                         yAxisIndex: seriesConfig?.yAxis || 0,
+                        zlevel: seriesConfig?.zIndex || 0,
                         data: axisDatas[seriesName]
                     })
                 })
