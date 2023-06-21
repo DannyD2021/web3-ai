@@ -28,6 +28,7 @@ import ChartView from "../ChartView";
 import CounterView from "../CounterView";
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import CopyToClipboardButton from "@/components/CopyToClickButton";
+import ChatModuleTitle from "../ChatModuleTitle";
 
 const ChatConfig: any = {
   ai: {
@@ -123,6 +124,7 @@ const ChatLines = ({ chatMsgs, sendMessage }: { chatMsgs: MessageType[], sendMes
   }, [])
   return (
     <ChatLinesContainer id="chat-container" ref={mutationRef}>
+      <ChatModuleTitle title="Chat"/>
       <MsgBlock msg={chatMsgs[0]} id={1} />
       <RecommendsContainer>
         {recommends?.map((reco: any, index: number) => (

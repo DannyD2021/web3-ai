@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 
 export const ChatLinesContainer = styled.div`
-  width: 100%;
+  width: 800px;
   height: 100%;
   padding: 16px;
   color: #fff;

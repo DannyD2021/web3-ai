@@ -5,6 +5,8 @@ import _ from 'underscore'
 import ChatQuickMenu from "./components/ChatQuickMenu";
 import { useChatStore } from "@/store/chat";
 import { isDesktop } from 'react-device-detect';
+import History from "./components/History";
+import Feeds from "./components/Feeds";
 
 
 const ChatContainer = styled.div<{ isDesktop?: boolean }>`
@@ -12,6 +14,7 @@ const ChatContainer = styled.div<{ isDesktop?: boolean }>`
   margin-top: 16px;
   padding-bottom: 80px;
   position: relative;
+  display: flex;
 `;
 
 const InputContainer = styled.div<{ isDesktop?: boolean }>`
@@ -91,7 +94,9 @@ const Chat = () => {
   }
   return (
     <ChatContainer isDesktop={isDesktop}>
+      {isDesktop && <History />}
       <ChatLines chatMsgs={chatMessages} sendMessage={sendMessage} />
+      {isDesktop && <Feeds />}
       <InputContainer isDesktop={isDesktop}>
         <InputBlock>
           <ChatQuickMenu />
