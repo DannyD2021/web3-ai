@@ -21,6 +21,8 @@ const DUNE_ECHARTS_MAPPING: any = {
     column: 'bar',
 }
 
+const SUPPORT_RENDER_TYPES = ['area', 'line', 'column', 'pie'];
+
 const ChartView = ({ chartData }: any) => {
     const { data = [], title, options = {}, render_type } = chartData || pieData;
     const { columnMapping, seriesOptions, yAxis, legend, globalSeriesType } = options || {};
@@ -179,6 +181,8 @@ const ChartView = ({ chartData }: any) => {
         }
         return ''
     }
+    // not support render type show
+    if (!SUPPORT_RENDER_TYPES.includes(render_type)) return null;
     return (
         <ChartViewContainer>
             {title && <h2>{title}</h2>}

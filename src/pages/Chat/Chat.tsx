@@ -2,24 +2,25 @@ import React from "react";
 import styled from '@emotion/styled';
 import ChatLines from "./components/ChatLines";
 import _ from 'underscore'
-import { SendIcon } from "@/components/icons";
 import ChatQuickMenu from "./components/ChatQuickMenu";
 import { useChatStore } from "@/store/chat";
+import { isDesktop } from 'react-device-detect';
 
 
-const ChatContainer = styled.div`
-  height: calc(100vh - 47.5px);
+const ChatContainer = styled.div<{ isDesktop?: boolean }>`
+  height: ${props => (props.isDesktop ? 'calc(100vh - 165px)' : 'calc(100vh - 65px)')};
+  margin-top: 16px;
   padding-bottom: 80px;
   position: relative;
 `;
 
-const InputContainer = styled.div`
+const InputContainer = styled.div<{ isDesktop?: boolean }>`
   width: 100vw;
   max-width: 800px;
   display: flex;
   padding: 15px;
   position: fixed;
-  bottom: 0;
+  bottom: ${props => (props.isDesktop ? '100px' : '0')};;
   gap: 5px;
   text-align: center;
   left: 50%;
@@ -89,9 +90,9 @@ const Chat = () => {
     }
   }
   return (
-    <ChatContainer>
+    <ChatContainer isDesktop={isDesktop}>
       <ChatLines chatMsgs={chatMessages} sendMessage={sendMessage} />
-      <InputContainer>
+      <InputContainer isDesktop={isDesktop}>
         <InputBlock>
           <ChatQuickMenu />
           <input

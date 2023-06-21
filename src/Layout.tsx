@@ -8,10 +8,7 @@ import { arbitrum, mainnet, polygon } from 'wagmi/chains';
 import { formatAddress } from '@/utils';
 import { setCookie, removeCookie } from '@/utils/cookies';
 import { WALLET_ADDRESS } from '@/const';
-import {
-  isDesktop,
-  isMobile
-} from 'react-device-detect';
+import { isDesktop } from 'react-device-detect';
 import { MyProfileIcon, DisconnectIcon } from '@/components/icons';
 import Footer from '@/components/Footer';
 import './global.css';
@@ -35,19 +32,23 @@ const AppContainer = styled.main`
   padding-top: 48px;
 `
 
-const HeaderContainer = styled.div`
-  display: flex;
+const HeaderContainer = styled.div<{ isDesktop?: boolean }>`
   width: 100%;
-  max-width: 800px;
-  justify-content: space-between;
   background: #20344E;
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.05);
-  padding: 8px 16px;
   position: fixed;
   z-index: 10;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+
+  .header-content {
+    width: ${props => (props.isDesktop ? '800px' : '100%')};
+    padding: 16px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
 
   .user {
     position: relative;
@@ -55,7 +56,7 @@ const HeaderContainer = styled.div`
       padding: 6px 12px;
       background: #3765EF;
       border-radius: 4px;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: bold;
     }
 
@@ -118,28 +119,30 @@ export default function Layout() {
   return (
     <AppContainer>
       <WagmiConfig client={wagmiClient}>
-        <HeaderContainer>
-          <img src='./logo.svg' onClick={() => {
-            navigate('/');
-            setUserMenuVisible(false);
-          }} />
-          <div className="user">
-            <div className="connect" onClick={handleConnect}>{address ? formatAddress(address) : 'Connect'}</div>
-            {userMenuVisible && (
-              <ul className="user-menu">
-                <li onClick={() => {
-                  navigate('/user');
-                  setUserMenuVisible(false);
-                }}><MyProfileIcon /><span>My profile</span></li>
-                <li onClick={handleDisConnect}><DisconnectIcon /><span>Disconnect</span></li>
-              </ul>
-            )}
+        <HeaderContainer isDesktop={isDesktop}>
+          <div className='header-content'>
+            <img src='./logo.svg' onClick={() => {
+              navigate('/');
+              setUserMenuVisible(false);
+            }} />
+            <div className="user">
+              <div className="connect" onClick={handleConnect}>{address ? formatAddress(address) : 'Connect'}</div>
+              {userMenuVisible && (
+                <ul className="user-menu">
+                  <li onClick={() => {
+                    navigate('/user');
+                    setUserMenuVisible(false);
+                  }}><MyProfileIcon /><span>My profile</span></li>
+                  <li onClick={handleDisConnect}><DisconnectIcon /><span>Disconnect</span></li>
+                </ul>
+              )}
+            </div>
           </div>
         </HeaderContainer>
       </WagmiConfig>
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
       <Outlet />
-      {/* <Footer/> */}
+      { isDesktop && <Footer/>}
     </AppContainer>
   );
 }

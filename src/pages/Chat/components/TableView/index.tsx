@@ -79,6 +79,7 @@ const TableView = ({ chartData }: any) => {
                 <TableFooter>
                     <TableRow>
                         <TablePagination
+                            align="left"
                             count={data.length}
                             rowsPerPage={rowsPerPage}
                             onRowsPerPageChange={handleChangeRowsPerPage}
