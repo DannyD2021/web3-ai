@@ -10,7 +10,7 @@ import { setCookie, removeCookie } from '@/utils/cookies';
 import { WALLET_ADDRESS } from '@/const';
 import { isDesktop } from 'react-device-detect';
 import { MyProfileIcon, DisconnectIcon } from '@/components/icons';
-import Footer from '@/components/Footer';
+// import Footer from '@/components/Footer';
 import './global.css';
 
 const chains = [arbitrum, mainnet, polygon];
@@ -142,7 +142,6 @@ export default function Layout() {
       </WagmiConfig>
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
       <Outlet />
-      { isDesktop && <Footer/>}
     </AppContainer>
   );
 }

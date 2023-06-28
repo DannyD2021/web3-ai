@@ -10,7 +10,7 @@ import Feeds from "./components/Feeds";
 
 
 const ChatContainer = styled.div<{ isDesktop?: boolean }>`
-  height: ${props => (props.isDesktop ? 'calc(100vh - 165px)' : 'calc(100vh - 65px)')};
+  height: calc(100vh - 65px);
   margin-top: 16px;
   padding-bottom: 80px;
   position: relative;
@@ -23,7 +23,7 @@ const InputContainer = styled.div<{ isDesktop?: boolean }>`
   display: flex;
   padding: 15px;
   position: fixed;
-  bottom: ${props => (props.isDesktop ? '100px' : '0')};;
+  bottom: 0;
   gap: 5px;
   text-align: center;
   left: 50%;
