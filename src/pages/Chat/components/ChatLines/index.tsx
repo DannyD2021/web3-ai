@@ -8,6 +8,7 @@ import apis from "@/apis";
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import {
+  ChatWrappper,
   ChatLinesContainer,
   ContentBlock,
   ChatLabel,
@@ -85,8 +86,6 @@ const MsgBlock = ({ msg, id }: { msg: MessageType, id: number }) => {
         {(chartData && chartData.type === 'table') && <TableView chartData={chartData} />}
         {(chartData && chartData.type === 'chart') && <ChartView chartData={chartData} />}
         {(chartData && chartData.type === 'counter') && <CounterView chartData={chartData} />}
-        {/* <CounterView chartData={chartData} /> */}
-        {/* <ChartView chartData={chartData} /> */}
       </>
     )
   }
@@ -104,6 +103,7 @@ const MsgBlock = ({ msg, id }: { msg: MessageType, id: number }) => {
 
 const ChatLines = ({ chatMsgs, sendMessage }: { chatMsgs: MessageType[], sendMessage: any }) => {
   const mutationRef = useRef<any>();
+  const mutationHeightRef = useRef<any>(0);
   const [recommends, setRecommends] = useState<any>([]);
   useEffect(() => {
     apis.recommends().then((res: any) => setRecommends(res.data || []))
@@ -111,7 +111,10 @@ const ChatLines = ({ chatMsgs, sendMessage }: { chatMsgs: MessageType[], sendMes
     // auto scroll
     if (mutationRef.current) {
       const observer = new MutationObserver(() => {
-        mutationRef.current.scrollTo({ top: mutationRef.current.scrollHeight, behavior: "smooth", })
+        if (mutationHeightRef.current !== mutationRef.current.scrollHeight) {
+          mutationRef.current.scrollTo({ top: mutationRef.current.scrollHeight, behavior: "smooth", });
+          mutationHeightRef.current = mutationRef.current.scrollHeight;
+        }
       });
       observer.observe(mutationRef.current, {
         attributes: true,
@@ -119,26 +122,29 @@ const ChatLines = ({ chatMsgs, sendMessage }: { chatMsgs: MessageType[], sendMes
         childList: true,
         subtree: true,
       });
+      mutationHeightRef.current = mutationRef.current.scrollHeight;
       return () => observer.disconnect();
     }
   }, [])
   return (
-    <ChatLinesContainer id="chat-container" ref={mutationRef}>
-      <ChatModuleTitle title="Chat"/>
-      <MsgBlock msg={chatMsgs[0]} id={1} />
-      <RecommendsContainer>
-        {recommends?.map((reco: any, index: number) => (
-          <div
-            onClick={() => sendMessage(reco.title)}
-            key={index}
-            className="recommend-content">
-            {index === 0 && <span className="fire"><LocalFireDepartmentIcon fontSize="small" /></span>}
-            {reco.title}
-          </div>
-        ))}
-      </RecommendsContainer>
-      {chatMsgs?.slice(1)?.map((msg, index) => <MsgBlock msg={msg} key={index} id={index + 2} />)}
-    </ChatLinesContainer>
+    <ChatWrappper>
+      <ChatModuleTitle title="Chat" />
+      <ChatLinesContainer id="chat-container" ref={mutationRef}>
+        <MsgBlock msg={chatMsgs[0]} id={1} />
+        <RecommendsContainer>
+          {recommends?.map((reco: any, index: number) => (
+            <div
+              onClick={() => sendMessage(reco.title)}
+              key={index}
+              className="recommend-content">
+              {index === 0 && <span className="fire"><LocalFireDepartmentIcon fontSize="small" /></span>}
+              {reco.title}
+            </div>
+          ))}
+        </RecommendsContainer>
+        {chatMsgs?.slice(1)?.map((msg, index) => <MsgBlock msg={msg} key={index} id={index + 2} />)}
+      </ChatLinesContainer>
+    </ChatWrappper>
   );
 };
 

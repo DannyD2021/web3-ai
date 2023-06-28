@@ -8,16 +8,20 @@ import { ContactDicordIcon, ContactTwitterIcon, ContactTelegramIcon, ContactEmai
 const HistoryContainer = styled.div`
     min-width: 150px;
     flex: 1;
-    padding-left: 10px;
+    padding: 0 10px;
     margin-top: 16px;
 `
 
 const HistoryList = styled.div`
     background: #142132;
+    border-radius: 5px;
     .history-item {
         padding: 16px;
         border-bottom: 1px solid rgba(118, 134, 171, 0.15);
         position: relative;
+        &:last-child: {
+            border-bottom: none;
+        }
         h5 {
             font-size: 16px;
         }
@@ -31,7 +35,7 @@ const HistoryList = styled.div`
             position: absolute;
             right: 16px;
             top: 16px;
-            font-size: 15px;
+            font-size: 10px;
             color: rgba(255, 255, 255, 0.5)
         }
     }
@@ -39,6 +43,7 @@ const HistoryList = styled.div`
 
 const ContactUsContaner = styled.div`
     background: #142132;
+    border-radius: 5px;
     padding: 24px;
     margin-top: 15px;
     display: flex;
@@ -62,7 +67,7 @@ const ContactUsContaner = styled.div`
 const HistoryView = () => {
     return (
         <HistoryContainer>
-            <ChatModuleTitle title="History"/>
+            <ChatModuleTitle title="History" />
             <HistoryList>
                 <div className="history-item">
                     <h5>Question Title</h5>
@@ -97,11 +102,11 @@ const HistoryView = () => {
             </HistoryList>
             <ContactUsContaner>
                 <div>
-                    <a className='icon' target="_blank" href="https://t.me/web3analyitcs_official"><ContactDicordIcon/></a>
-                    <a className='icon' target="_blank" href="https://discord.gg/tvgybU2x"><ContactTwitterIcon/></a>
-                    <a className='icon' target="_blank" href="https://twitter.com/web3_analytics"><ContactTelegramIcon/></a>
+                    <a className='icon' target="_blank" href="https://t.me/web3analyitcs_official"><ContactDicordIcon /></a>
+                    <a className='icon' target="_blank" href="https://discord.gg/tvgybU2x"><ContactTwitterIcon /></a>
+                    <a className='icon' target="_blank" href="https://twitter.com/web3_analytics"><ContactTelegramIcon /></a>
                     <Tooltip title="contact@3analytics.io">
-                        <span className='icon'><ContactEmailIcon/></span>
+                        <span className='icon'><ContactEmailIcon /></span>
                     </Tooltip>
                 </div>
                 <div className="contact-us">Contact Us</div>

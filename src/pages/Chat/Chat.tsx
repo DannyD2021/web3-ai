@@ -19,7 +19,7 @@ const ChatContainer = styled.div<{ isDesktop?: boolean }>`
 
 const InputContainer = styled.div<{ isDesktop?: boolean }>`
   width: 100vw;
-  max-width: 800px;
+  max-width: 780px;
   display: flex;
   padding: 15px;
   position: fixed;

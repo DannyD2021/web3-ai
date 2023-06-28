@@ -1,16 +1,20 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-export const ChatLinesContainer = styled.div`
+export const ChatWrappper = styled.div`
   width: 800px;
   height: 100%;
   padding: 16px;
+`;
+
+export const ChatLinesContainer = styled.div`
+  width: 100%;
+  height: calc(100% - 25.5px);
   color: #fff;
   font-size: 14px;
   font-weight: 400;
   position: relative;
   overflow: auto;
-
   .address-link {
     text-decoration: underline;
     cursor: pointer;
@@ -19,6 +23,8 @@ export const ChatLinesContainer = styled.div`
     }
   }
 `;
+
+
 
 export const ContentBlock = styled.div`
   width: 95%;
