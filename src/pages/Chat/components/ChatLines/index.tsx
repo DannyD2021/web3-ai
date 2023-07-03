@@ -30,6 +30,7 @@ import CounterView from "../CounterView";
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import CopyToClipboardButton from "@/components/CopyToClickButton";
 import ChatModuleTitle from "../ChatModuleTitle";
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 const ChatConfig: any = {
   ai: {
@@ -106,7 +107,7 @@ const ChatLines = ({ chatMsgs, sendMessage }: { chatMsgs: MessageType[], sendMes
   const mutationHeightRef = useRef<any>(0);
   const [recommends, setRecommends] = useState<any>([]);
   useEffect(() => {
-    apis.recommends().then((res: any) => setRecommends(res.data || []))
+    fetchRecommends();
 
     // auto scroll
     if (mutationRef.current) {
@@ -126,12 +127,20 @@ const ChatLines = ({ chatMsgs, sendMessage }: { chatMsgs: MessageType[], sendMes
       return () => observer.disconnect();
     }
   }, [])
+
+  const fetchRecommends = () => {
+    apis.recommends().then((res: any) => setRecommends(res.data || []));
+  }
   return (
     <ChatWrappper>
       <ChatModuleTitle title="Chat" />
       <ChatLinesContainer id="chat-container" ref={mutationRef}>
         <MsgBlock msg={chatMsgs[0]} id={1} />
         <RecommendsContainer>
+          <h4>
+            Popular
+            <span className="popular-refresh" onClick={() => { fetchRecommends() }}><AutorenewIcon fontSize="small" sx={{ color: 'rgba(118, 134, 171, 0.7)' }}/></span>
+          </h4>
           {recommends?.map((reco: any, index: number) => (
             <div
               onClick={() => sendMessage(reco.title)}

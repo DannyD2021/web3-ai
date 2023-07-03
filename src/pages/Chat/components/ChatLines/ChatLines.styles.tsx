@@ -79,6 +79,15 @@ export const RecommendsContainer = styled.div`
   clear: both;
   margin-bottom: 16px;
 
+  h4 {
+    padding: 8px 12px 0 12px;
+  }
+  
+  .popular-refresh {
+    cursor: pointer;
+    margin-left: 5px;
+  }
+
   .recommend-content {
     padding: 8px;
     padding-left: 30px;
