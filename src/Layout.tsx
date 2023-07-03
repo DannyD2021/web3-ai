@@ -122,8 +122,9 @@ export default function Layout() {
         <HeaderContainer isDesktop={isDesktop}>
           <div className='header-content'>
             <img src='./logo.svg' onClick={() => {
-              navigate('/');
-              setUserMenuVisible(false);
+              window.open('https://3analytics.ai', '_blank');
+              // navigate('/');
+              // setUserMenuVisible(false);
             }} />
             <div className="user">
               <div className="connect" onClick={handleConnect}>{address ? formatAddress(address) : 'Connect'}</div>
