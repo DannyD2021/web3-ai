@@ -13,7 +13,7 @@ const HistoryContainer = styled.div`
 `
 
 const HistoryList = styled.div`
-    background: #142132;
+    background: #1f2228;
     border-radius: 5px;
     .history-item {
         padding: 16px;
@@ -42,7 +42,7 @@ const HistoryList = styled.div`
 `
 
 const ContactUsContaner = styled.div`
-    background: #142132;
+    background: #1f2228;
     border-radius: 5px;
     padding: 24px;
     margin-top: 15px;
@@ -102,9 +102,9 @@ const HistoryView = () => {
             </HistoryList>
             <ContactUsContaner>
                 <div>
-                    <a className='icon' target="_blank" href="https://t.me/web3analyitcs_official"><ContactDicordIcon /></a>
-                    <a className='icon' target="_blank" href="https://discord.gg/tvgybU2x"><ContactTwitterIcon /></a>
-                    <a className='icon' target="_blank" href="https://twitter.com/web3_analytics"><ContactTelegramIcon /></a>
+                    <a className='icon' target="_blank" href="https://discord.com/invite/tvgybU2x"><ContactDicordIcon /></a>
+                    <a className='icon' target="_blank" href="https://twitter.com/web3_analytics"><ContactTwitterIcon /></a>
+                    <a className='icon' target="_blank" href="https://t.me/web3analyitcs_official"><ContactTelegramIcon /></a>
                     <Tooltip title="contact@3analytics.io">
                         <span className='icon'><ContactEmailIcon /></span>
                     </Tooltip>

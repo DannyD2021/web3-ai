@@ -14,14 +14,14 @@ body {
   width: 100%;
   height: 100%;
   /* background: #1e232c !important; */
-  background: #1b293e !important;
+  background: #15171B !important;
 }
 
 #root {
   width: 100%;
   margin: 0 auto;
   height: 100%;
-  background: #1b293e;
+  background: #15171B;
   color: #fff;
   position: relative;
 }

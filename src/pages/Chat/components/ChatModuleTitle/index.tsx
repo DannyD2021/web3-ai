@@ -8,6 +8,8 @@ const ChatModuleTitleContainer = styled.h4`
     margin-bottom: 5px;
     display: flex;
     align-items: center;
+    position: fixed;
+    top: 70px;
     .left {
         display: inline-block;
         width: 4px;

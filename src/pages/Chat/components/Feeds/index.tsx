@@ -3,17 +3,17 @@ import React from "react";
 import styled from '@emotion/styled';
 import ChatModuleTitle from "../ChatModuleTitle";
 
-const FeedsContainer = styled.div`
+const FeedContainer = styled.div`
     min-width: 150px;
     flex: 1;
     margin-top: 16px;
     padding: 0 10px;
 `
 
-const FeedsList = styled.div`
-    .feeds-item {
+const FeedList = styled.div`
+    .Feed-item {
         padding: 16px;
-        background: #142132;
+        background: #1f2228;
         border-radius: 5px;
         position: relative;
         margin-bottom: 15px;
@@ -39,51 +39,51 @@ const FeedsList = styled.div`
     }
 `
 
-const FeedsView = ({ chartData }: any) => {
+const FeedView = ({ chartData }: any) => {
 
     return (
-        <FeedsContainer>
-            <ChatModuleTitle title="Feeds"/>
-            <FeedsList>
-                <div className="feeds-item">
-                    <h5>Feeds Title</h5>
+        <FeedContainer>
+            <ChatModuleTitle title="Feed"/>
+            <FeedList>
+                <div className="Feed-item">
+                    <h5>Feed Title</h5>
                     <p>description...</p>
                     <span className="time">2022.12.12</span>
                 </div>
-                <div className="feeds-item">
-                    <h5>Feeds Title</h5>
+                <div className="Feed-item">
+                    <h5>Feed Title</h5>
                     <p>description...</p>
                     <span className="time">2022.12.12</span>
                 </div>
-                <div className="feeds-item">
-                    <h5>Feeds Title</h5>
+                <div className="Feed-item">
+                    <h5>Feed Title</h5>
                     <p>description...</p>
                     <span className="time">2022.12.12</span>
                 </div>
-                <div className="feeds-item">
-                    <h5>Feeds Title</h5>
+                <div className="Feed-item">
+                    <h5>Feed Title</h5>
                     <p>description...</p>
                     <span className="time">2022.12.12</span>
                 </div>
-                <div className="feeds-item">
-                    <h5>Feeds Title</h5>
+                <div className="Feed-item">
+                    <h5>Feed Title</h5>
                     <p>description...</p>
                     <span className="time">2022.12.12</span>
                 </div>
-                <div className="feeds-item">
-                    <h5>Feeds Title</h5>
+                <div className="Feed-item">
+                    <h5>Feed Title</h5>
                     <p>description...</p>
                     <span className="time">2022.12.12</span>
                 </div>
-                <div className="feeds-item">
-                    <h5>Feeds Title</h5>
+                <div className="Feed-item">
+                    <h5>Feed Title</h5>
                     <p>description...</p>
                     <span className="time">2022.12.12</span>
                 </div>
-            </FeedsList>
-        </FeedsContainer>
+            </FeedList>
+        </FeedContainer>
     )
 
 };
 
-export default FeedsView;
+export default FeedView;

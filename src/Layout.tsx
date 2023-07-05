@@ -34,7 +34,7 @@ const AppContainer = styled.main`
 
 const HeaderContainer = styled.div<{ isDesktop?: boolean }>`
   width: 100%;
-  background: #20344E;
+  background: #242433;
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.05);
   position: fixed;
   z-index: 10;

@@ -25,7 +25,7 @@ export const initialChats: MessageType[] = [
   {
     who: "ai",
     message: {
-      content: `Hi, I'm Web3 Analytics AI, your Web3 assistant. Feel free to ask me anything about Web3 & Crypto market.`,
+      content: `Greetings, my name is M2. I am a professional artificial assistant with extensive knowledge and real-time updates in digital finance. Please feel free to ask any topics related to cryptocurrency, NFTs, DeFi, Web3, and other relevant subjects. My expertise is at your disposal.`,
     },
     type: ChatTypes.SESSION
   }

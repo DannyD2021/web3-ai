@@ -10,9 +10,9 @@ import Feeds from "./components/Feeds";
 
 
 const ChatContainer = styled.div<{ isDesktop?: boolean }>`
-  height: calc(100vh - 65px);
-  margin-top: 16px;
-  padding-bottom: 80px;
+  height: calc(100vh - 90px);
+  margin-top: 40px;
+  padding-bottom: 55px;
   position: relative;
   display: flex;
 `;
@@ -28,13 +28,13 @@ const InputContainer = styled.div<{ isDesktop?: boolean }>`
   text-align: center;
   left: 50%;
   transform: translate(-50%, 0);
-  background-color: #1b293e;
+  background: #242433;
 `;
 
 const InputBlock = styled.div`
   height: 56px;
   background-image: url('./chat-input-bg.png');
-  background-size:100% 100%;
+  background-size: 100% 100%;
   padding: 10px;
   flex: 1;
   display: flex;
