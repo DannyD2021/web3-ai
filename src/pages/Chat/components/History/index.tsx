@@ -102,7 +102,7 @@ const HistoryView = () => {
             </HistoryList>
             <ContactUsContaner>
                 <div>
-                    <a className='icon' target="_blank" href="https://discord.com/invite/tvgybU2x"><ContactDicordIcon /></a>
+                    <a className='icon' target="_blank" href="https://discord.com/invite/ZdWPpMG9bC"><ContactDicordIcon /></a>
                     <a className='icon' target="_blank" href="https://twitter.com/web3_analytics"><ContactTwitterIcon /></a>
                     <a className='icon' target="_blank" href="https://t.me/web3analyitcs_official"><ContactTelegramIcon /></a>
                     <Tooltip title="contact@3analytics.io">

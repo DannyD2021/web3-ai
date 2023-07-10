@@ -94,7 +94,7 @@ export const RecommendsContainer = styled.div`
     border-bottom: 1px solid #2E4564;
     cursor: pointer;
     position: relative;
-    color: #3765EF;
+    color: #fff;
 
     .fire {
       position: absolute;
