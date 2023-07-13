@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from '@emotion/styled';
 import ChatLines from "./components/ChatLines";
 import _ from 'underscore'
@@ -7,6 +7,13 @@ import { useChatStore } from "@/store/chat";
 import { isDesktop } from 'react-device-detect';
 import History from "./components/History";
 import Feeds from "./components/Feeds";
+import { useAccount } from 'wagmi';
+import Dialog from '@mui/material/Dialog';
+import Button from '@mui/material/Button';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 
 const ChatContainer = styled.div<{ isDesktop?: boolean }>`
@@ -77,15 +84,28 @@ const ChatButtonContainer = styled.div`
 `;
 
 const Chat = () => {
-  const { chatMessages, inputMsg, setInputMsg, sendMessage, chatloading, stopChat } = useChatStore();
+  const { chatMessages, inputMsg, setInputMsg, sendMessage, chatloading, stopChat, chatCounts } = useChatStore();
+  const { address, isConnected } = useAccount();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const checkChatCounts = () => {
+    if (!isConnected && chatCounts > 3) {
+      handleOpen();
+      return;
+    }
+  }
 
   const handleKeyDown = (event: any) => {
+    checkChatCounts();
     if (event.key === 'Enter') {
       sendMessage(inputMsg);
     }
   }
 
   const handleChat = () => {
+    checkChatCounts();
     if (chatloading) {
       stopChat();
     } else {
@@ -114,6 +134,26 @@ const Chat = () => {
           {chatloading ? <span className="loading"/> : <img src="./chat_button.png"/>} 
         </ChatButtonContainer>
       </InputContainer>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Chat tips"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+          Please Login to access W3AI and get 100 $WAI!
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} autoFocus>
+            Got it!
+          </Button>
+        </DialogActions>
+      </Dialog>
     </ChatContainer>
   );
 };

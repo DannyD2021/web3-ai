@@ -45,6 +45,7 @@ class FatalError extends Error { };
 export const [useChatStore, ChatStoreProvider] = createStore(() => {
   const ctrlRef = useRef<any>(null);
   const [chatloading, setChatLoading] = useState(false);
+  const [chatCounts, setChatCounts] = useState(0);
   const [chatMessages, setChatMessages] = useState(initialChats);
   const [inputMsg, setInputMsg] = useState("");
 
@@ -68,6 +69,8 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     const newUserMsg: MessageType = { message: { content: msg }, who: "user", type: ChatTypes.SESSION };
     const newAIMsg: MessageType = { message: { content: '' },  who: "ai", loading: true, type: ChatTypes.SESSION };
     addNewMessage([newUserMsg, newAIMsg])
+    // add chat count +1
+    setChatCounts(chatCounts+1);
     // handle chatgpt
     await fetchEventSource('/gw/api/v1/chat/completions', {
       method: 'POST',
@@ -129,6 +132,7 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
       setChatMessages([...chatMessages, lastChatMsg]);
     }
   }
+
   return {
     chatMessages,
     inputMsg,
@@ -137,6 +141,7 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     sendMessage,
     addNewMessage,
     chatloading,
-    stopChat
+    stopChat,
+    chatCounts
   }
 })
