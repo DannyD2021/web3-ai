@@ -58,6 +58,7 @@ const HeaderContainer = styled.div<{ isDesktop?: boolean }>`
       border-radius: 4px;
       font-size: 14px;
       font-weight: bold;
+      cursor: pointer;
     }
 
     .user-menu {

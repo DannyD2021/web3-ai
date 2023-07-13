@@ -23,7 +23,7 @@ export default function MyScore() {
       <ScoreBlockContainer>
         <div className='score-header'>
           <MyScoreIcon />
-          <span className='myscore-label'>My Scores</span>
+          <span className='myscore-label'>My $WAI</span>
           <span className='myscore-number'>{scores.total_chat_score}</span>
         </div>
         <ScoreTitle>Data Evaluation</ScoreTitle>
@@ -33,7 +33,7 @@ export default function MyScore() {
             <div className='score-block-text'>{scores.daily_chat_score}</div>
           </ScoreBlock>
           <ScoreBlock>
-            <div className='score-block-label'>Accumulated Score</div>
+            <div className='score-block-label'>Accumulated $WAI</div>
             <div className='score-block-text'>{scores.total_chat_score}</div>
           </ScoreBlock>
         </ScoreContainer>
@@ -44,7 +44,7 @@ export default function MyScore() {
             <div className='score-block-text'>--</div>
           </ScoreBlock>
           <ScoreBlock>
-            <div className='score-block-label'>Accumulated Score</div>
+            <div className='score-block-label'>Accumulated $WAI</div>
             <div className='score-block-text'>--</div>
           </ScoreBlock>
         </ScoreContainer>
@@ -52,12 +52,12 @@ export default function MyScore() {
       <ScoreBlockContainer>
         <div className='score-header'>
           <CompleteScoreIcon />
-          <span className='myscore-label'>Complete tasks and earn score</span>
+          <span className='myscore-label'>Complete tasks and earn $WAI</span>
         </div>
         <ScoreTitle>Complete email binding</ScoreTitle>
         <ScoreContainer>
           <ScoreBlock>
-            <div className='score-block-label'>Earn score</div>
+            <div className='score-block-label'>Earn $WAI</div>
             <div className='score-block-text'>0</div>
           </ScoreBlock>
           <ScoreBlock>
