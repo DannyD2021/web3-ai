@@ -122,11 +122,9 @@ export default function Layout() {
       <WagmiConfig client={wagmiClient}>
         <HeaderContainer isDesktop={isDesktop}>
           <div className='header-content'>
-            <img src='./logo.svg' onClick={() => {
-              window.open('https://3analytics.ai', '_blank');
-              // navigate('/');
-              // setUserMenuVisible(false);
-            }} />
+            <a href='https://3gpt.ai' target='_blank'>
+              <img src='./logo.svg'/>
+            </a>
             <div className="user">
               <div className="connect" onClick={handleConnect}>{address ? formatAddress(address) : 'Connect'}</div>
               {userMenuVisible && (
