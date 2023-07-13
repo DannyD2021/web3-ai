@@ -4,12 +4,12 @@ import styled from "@emotion/styled";
 export const ChatWrappper = styled.div`
   width: 800px;
   height: 100%;
-  padding: 16px;
+  padding: 16px 16px 0 16px;
 `;
 
 export const ChatLinesContainer = styled.div`
   width: 100%;
-  height: calc(100% - 25.5px);
+  height: calc(100% - 50px);
   color: #fff;
   font-size: 14px;
   font-weight: 400;
@@ -27,7 +27,7 @@ export const ChatLinesContainer = styled.div`
 
 
 export const ContentBlock = styled.div`
-  width: 95%;
+  width: 100%;
   gap: 20px;
   margin-bottom: 16px;
   clear: both;

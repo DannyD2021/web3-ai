@@ -4,10 +4,17 @@ import styled from '@emotion/styled';
 import ChatModuleTitle from "../ChatModuleTitle";
 
 const FeedContainer = styled.div`
-    min-width: 150px;
     flex: 1;
     margin-top: 16px;
     padding: 0 10px;
+    .commming-soon {
+        background: #1f2228;
+        border-radius: 5px;
+        padding-top: 30px;
+        border-bottom: 1px solid rgba(118, 134, 171, 0.15);
+        text-align: center;
+        height: calc(100% + 50px);
+    }
 `
 
 const FeedList = styled.div`
@@ -44,7 +51,8 @@ const FeedView = ({ chartData }: any) => {
     return (
         <FeedContainer>
             <ChatModuleTitle title="Feed"/>
-            <FeedList>
+            <div className="commming-soon">commming soon...</div>
+            {/* <FeedList>
                 <div className="Feed-item">
                     <h5>Feed Title</h5>
                     <p>description...</p>
@@ -80,7 +88,7 @@ const FeedView = ({ chartData }: any) => {
                     <p>description...</p>
                     <span className="time">2022.12.12</span>
                 </div>
-            </FeedList>
+            </FeedList> */}
         </FeedContainer>
     )
 

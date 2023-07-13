@@ -6,10 +6,17 @@ import Tooltip from '@mui/material/Tooltip';
 import { ContactDicordIcon, ContactTwitterIcon, ContactTelegramIcon, ContactEmailIcon } from "@/components/icons";
 
 const HistoryContainer = styled.div`
-    min-width: 150px;
     flex: 1;
     padding: 0 10px;
     margin-top: 16px;
+    .commming-soon {
+        background: #1f2228;
+        border-radius: 5px;
+        padding-top: 30px;
+        border-bottom: 1px solid rgba(118, 134, 171, 0.15);
+        text-align: center;
+        height: calc(100% - 130px);
+    }
 `
 
 const HistoryList = styled.div`
@@ -68,7 +75,8 @@ const HistoryView = () => {
     return (
         <HistoryContainer>
             <ChatModuleTitle title="History" />
-            <HistoryList>
+            <div className="commming-soon">commming soon...</div>
+            {/* <HistoryList>
                 <div className="history-item">
                     <h5>Question Title</h5>
                     <p>description...</p>
@@ -99,14 +107,14 @@ const HistoryView = () => {
                     <p>description...</p>
                     <span className="time">2022.12.12</span>
                 </div>
-            </HistoryList>
+            </HistoryList> */}
             <ContactUsContaner>
                 <div>
-                    <a className='icon' target="_blank" href="https://discord.com/invite/ZdWPpMG9bC"><ContactDicordIcon /></a>
-                    <a className='icon' target="_blank" href="https://twitter.com/web3_analytics"><ContactTwitterIcon /></a>
-                    <a className='icon' target="_blank" href="https://t.me/web3analyitcs_official"><ContactTelegramIcon /></a>
+                    <a className='icon' target="_blank" href="https://discord.com/invite/ZdWPpMG9bC"><ContactDicordIcon sx={{ fontSize: 50 }}/></a>
+                    <a className='icon' target="_blank" href="https://twitter.com/web3_analytics"><ContactTwitterIcon sx={{ fontSize: 50 }}/></a>
+                    <a className='icon' target="_blank" href="https://t.me/web3analyitcs_official"><ContactTelegramIcon sx={{ fontSize: 50 }}/></a>
                     <Tooltip title="contact@3analytics.io">
-                        <span className='icon'><ContactEmailIcon /></span>
+                        <span className='icon'><ContactEmailIcon sx={{ fontSize: 50 }}/></span>
                     </Tooltip>
                 </div>
                 <div className="contact-us">Contact Us</div>

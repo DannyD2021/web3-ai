@@ -30,7 +30,7 @@ const InputContainer = styled.div<{ isDesktop?: boolean }>`
   display: flex;
   padding: 15px;
   position: fixed;
-  bottom: 0;
+  bottom: ${props => (props.isDesktop ? '10px' : '0')};
   gap: 5px;
   text-align: center;
   left: 50%;
