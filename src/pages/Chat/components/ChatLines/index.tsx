@@ -31,6 +31,7 @@ import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import CopyToClipboardButton from "@/components/CopyToClickButton";
 import ChatModuleTitle from "../ChatModuleTitle";
 import AutorenewIcon from '@mui/icons-material/Autorenew';
+import { LOCKED_QA } from "@/const";
 
 const ChatConfig: any = {
   ai: {
@@ -129,7 +130,10 @@ const ChatLines = ({ chatMsgs, sendMessage }: { chatMsgs: MessageType[], sendMes
   }, [])
 
   const fetchRecommends = () => {
-    apis.recommends().then((res: any) => setRecommends(res.data || []));
+    apis.recommends().then((res: any) => {
+      const rcs = res.data || [];
+      setRecommends([LOCKED_QA[0]].concat(rcs.slice(0, 2)));
+    });
   }
   return (
     <ChatWrappper>

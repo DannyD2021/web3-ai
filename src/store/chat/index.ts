@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { createStore } from 'hox';
 import _ from 'underscore';
 import { fetchEventSource } from "@microsoft/fetch-event-source";
+import { LOCKED_QA } from '@/const';
 
 export enum ChatTypes {
   SESSION,
@@ -54,7 +55,7 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     setChatMessages(newMsgs);
     setTimeout(() => {
       const msgSize = newMsgs.length;
-      const lastChatDivId = newMsgs[msgSize-1].type === ChatTypes.SESSION ? `chat-${newMsgs.length - 1}` : `chat-${newMsgs.length}`;
+      const lastChatDivId = newMsgs[msgSize - 1].type === ChatTypes.SESSION ? `chat-${newMsgs.length - 1}` : `chat-${newMsgs.length}`;
       const lastOffsetTop = document.getElementById(lastChatDivId)?.offsetTop || 0;
       document.getElementById('chat-container')?.scrollTo({ top: lastOffsetTop, behavior: 'smooth' });
     });
@@ -67,10 +68,19 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     setInputMsg("");
     const originMsgs = [...chatMessages];
     const newUserMsg: MessageType = { message: { content: msg }, who: "user", type: ChatTypes.SESSION };
-    const newAIMsg: MessageType = { message: { content: '' },  who: "ai", loading: true, type: ChatTypes.SESSION };
-    addNewMessage([newUserMsg, newAIMsg])
+    const newAIMsg: MessageType = { message: { content: '' }, who: "ai", loading: true, type: ChatTypes.SESSION };
+    addNewMessage([newUserMsg, newAIMsg]);
     // add chat count +1
-    setChatCounts(chatCounts+1);
+    setChatCounts(chatCounts + 1);
+    // handle LockedQA
+    if (msg === LOCKED_QA[0].title) {
+      Object.assign(newAIMsg, {
+        loading: false,
+        message: { content: LOCKED_QA[0].answer }
+      });
+      setChatMessages(originMsgs.concat(newUserMsg, newAIMsg));
+      return;
+    }
     // handle chatgpt
     await fetchEventSource('/gw/api/v1/chat/completions', {
       method: 'POST',
@@ -127,7 +137,7 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
       setChatLoading(false);
       let lastChatMsg = chatMessages.pop()!;
       if (lastChatMsg.loading) {
-        lastChatMsg = { message: { content: 'W3AI is aborted!' },  who: "ai", type: ChatTypes.SESSION };
+        lastChatMsg = { message: { content: 'W3AI is aborted!' }, who: "ai", type: ChatTypes.SESSION };
       }
       setChatMessages([...chatMessages, lastChatMsg]);
     }
