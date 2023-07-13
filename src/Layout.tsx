@@ -66,7 +66,7 @@ const HeaderContainer = styled.div<{ isDesktop?: boolean }>`
       background: #243B59;
       border: 1px solid rgba(17, 17, 18, 0.1);
       border-radius: 4px;
-      z-index: 10;
+      z-index: 20;
       right: 0;
       margin-top: 2px;
 

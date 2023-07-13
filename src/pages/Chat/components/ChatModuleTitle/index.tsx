@@ -12,7 +12,7 @@ const ChatModuleTitleContainer = styled.h4`
     top: 65px;
     background: #15171B;
     width: 100%;
-    z-index: 10;
+    z-index: 1;
     padding: 5px 0;
     .left {
         display: inline-block;
