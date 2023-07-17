@@ -75,7 +75,7 @@ const HistoryView = () => {
     return (
         <HistoryContainer>
             <ChatModuleTitle title="History" />
-            <div className="commming-soon">commming soon...</div>
+            <div className="commming-soon">coming soon...</div>
             {/* <HistoryList>
                 <div className="history-item">
                     <h5>Question Title</h5>

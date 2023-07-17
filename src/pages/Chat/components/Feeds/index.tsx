@@ -51,7 +51,7 @@ const FeedView = ({ chartData }: any) => {
     return (
         <FeedContainer>
             <ChatModuleTitle title="Feed"/>
-            <div className="commming-soon">commming soon...</div>
+            <div className="commming-soon">coming soon...</div>
             {/* <FeedList>
                 <div className="Feed-item">
                     <h5>Feed Title</h5>

@@ -79,6 +79,7 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
         message: { content: LOCKED_QA[0].answer }
       });
       setChatMessages(originMsgs.concat(newUserMsg, newAIMsg));
+      setChatLoading(false);
       return;
     }
     // handle chatgpt
