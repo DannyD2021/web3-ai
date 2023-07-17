@@ -59,7 +59,7 @@ const MsgBlock = ({ msg, id }: { msg: MessageType, id: number }) => {
       message_id: messageId,
       attitude,
       reason: '',
-    }).then(() => {
+    }).finally(() => {
       setThumbs({
         thumbDown: attitude === THUMB_TYPES.DOWN,
         thumbUp: attitude === THUMB_TYPES.UP,

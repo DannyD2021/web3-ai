@@ -9,7 +9,8 @@ export const ChatWrappper = styled.div`
 
 export const ChatLinesContainer = styled.div`
   width: 100%;
-  height: calc(100% - 50px);
+  height: calc(100% - 5px);
+  padding-right: 15px;
   color: #fff;
   font-size: 14px;
   font-weight: 400;
