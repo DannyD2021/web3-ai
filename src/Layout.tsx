@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { Outlet, useNavigate } from "react-router-dom";
-import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
-import { Web3Modal, useWeb3Modal } from '@web3modal/react';
-import { configureChains, createClient, WagmiConfig, useAccount } from 'wagmi';
-import { arbitrum, mainnet, polygon } from 'wagmi/chains';
+
+import { useWeb3Modal } from '@web3modal/react'
+import { useAccount } from 'wagmi';
+
 import { formatAddress } from '@/utils';
 import { setCookie, removeCookie } from '@/utils/cookies';
 import { WALLET_ADDRESS } from '@/const';
@@ -12,17 +12,6 @@ import { isDesktop } from 'react-device-detect';
 import { MyProfileIcon, DisconnectIcon } from '@/components/icons';
 // import Footer from '@/components/Footer';
 import './global.css';
-
-const chains = [arbitrum, mainnet, polygon];
-const projectId: string = String(process.env.REACT_APP_WALLET_PROJECT_ID);
-
-const { provider } = configureChains(chains, [w3mProvider({ projectId })]);
-const wagmiClient = createClient({
-  autoConnect: true,
-  connectors: w3mConnectors({ projectId, version: 1, chains }),
-  provider
-})
-const ethereumClient = new EthereumClient(wagmiClient, chains)
 
 
 const AppContainer = styled.main`
@@ -119,28 +108,25 @@ export default function Layout() {
 
   return (
     <AppContainer>
-      <WagmiConfig client={wagmiClient}>
-        <HeaderContainer isDesktop={isDesktop}>
-          <div className='header-content'>
-            <a href='https://3gpt.ai' target='_blank'>
-              <img src='./logo.svg'/>
-            </a>
-            <div className="user">
-              <div className="connect" onClick={handleConnect}>{address ? formatAddress(address) : 'Connect'}</div>
-              {userMenuVisible && (
-                <ul className="user-menu">
-                  <li onClick={() => {
-                    navigate('/user');
-                    setUserMenuVisible(false);
-                  }}><MyProfileIcon /><span>My profile</span></li>
-                  <li onClick={handleDisConnect}><DisconnectIcon /><span>Disconnect</span></li>
-                </ul>
-              )}
-            </div>
+      <HeaderContainer isDesktop={isDesktop}>
+        <div className='header-content'>
+          <a href='https://3gpt.ai' target='_blank'>
+            <img src='./logo.svg' />
+          </a>
+          <div className="user">
+            <div className="connect" onClick={handleConnect}>{address ? formatAddress(address) : 'Connect'}</div>
+            {userMenuVisible && (
+              <ul className="user-menu">
+                <li onClick={() => {
+                  navigate('/user');
+                  setUserMenuVisible(false);
+                }}><MyProfileIcon /><span>My profile</span></li>
+                <li onClick={handleDisConnect}><DisconnectIcon /><span>Disconnect</span></li>
+              </ul>
+            )}
           </div>
-        </HeaderContainer>
-      </WagmiConfig>
-      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+        </div>
+      </HeaderContainer>
       <Outlet />
     </AppContainer>
   );
