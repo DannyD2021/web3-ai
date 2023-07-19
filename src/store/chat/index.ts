@@ -29,9 +29,9 @@ export const initialChats: MessageType[] = [
     message: {
       content: `Hi, I'm Web3 Analytics AI, your Web3 assistant. Feel free to ask me anything about Web3 & Crypto market.
 
-      Telegram group: https://t.me/web3analyitcs_official
-      Discord: https://discord.com/invite/ZdWPpMG9bC
-      Twitter: https://twitter.com/web3_analytics
+      Telegram: t.me/web3analyitcs_official
+      Discord: discord.com/invite/ZdWPpMG9bC
+      Twitter: twitter.com/web3_analytics
       
       Join our community to claim $WAI airdrop.
       `,

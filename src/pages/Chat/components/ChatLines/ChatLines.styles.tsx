@@ -18,6 +18,7 @@ export const ChatLinesContainer = styled.div`
   overflow: auto;
   .address-link {
     text-decoration: underline;
+    word-break: break-word;
     cursor: pointer;
     &:visited, &:hover, &:active {
       color: #fff;

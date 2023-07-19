@@ -40,11 +40,12 @@ const ChatQuickMenu = () => {
     const [menuVisble, setMenuVisible] = useState(false);
     const { addNewMessage } = useChatStore();
     const onMenuClick = (type: ChatTypes) => {
-        addNewMessage({
-            who: "ai",
-            type,
-        })
-        setMenuVisible(false);
+        return;
+        // addNewMessage({
+        //     who: "ai",
+        //     type,
+        // })
+        // setMenuVisible(false);
     }
     return (
         <ChatQuickMenuContainer>
