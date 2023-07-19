@@ -5,6 +5,7 @@ import { formatAddress } from '@/utils';
 import { isDesktop } from 'react-device-detect';
 import Email from './components/Email';
 import MyScore from './components/MyScore';
+import { useAccountStore } from '@/store';
 
 const UserProfileContainer = styled.div<{ isDesktop?: boolean }>`
   padding: 16px;
@@ -23,7 +24,7 @@ const UserProfileContainer = styled.div<{ isDesktop?: boolean }>`
 
 
 export default function UserProfile() {
-  const { address, isConnected } = useAccount();
+  const { address } = useAccountStore();
   return (
     <UserProfileContainer isDesktop={isDesktop}>
        <div className="header">

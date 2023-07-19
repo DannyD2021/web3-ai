@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
+import { HoxRoot } from 'hox';
 
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Modal } from '@web3modal/react'
@@ -31,13 +32,15 @@ const root = ReactDOM.createRoot(rootElement!);
 
 root.render(
   <ThemeProvider theme={theme}>
-    <WagmiConfig config={wagmiConfig}>
-      <BrowserRouter basename={BASE_URL}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <App />
-      </BrowserRouter>
-      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
-    </WagmiConfig>
+    <HoxRoot>
+      <WagmiConfig config={wagmiConfig}>
+        <BrowserRouter basename={BASE_URL}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <App />
+        </BrowserRouter>
+        <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+      </WagmiConfig>
+    </HoxRoot>
   </ThemeProvider>,
 );

@@ -14,7 +14,7 @@
     "craco": "^0.0.3",
     "echarts": "^5.4.2",
     "echarts-for-react": "^3.0.2",
-    "ethers": "^5.7.2",
+    "ethers": "^6.6.4",
     "hox": "^2.1.0",
     "linkify-html": "^4.1.1",
     "linkifyjs": "^4.1.1",

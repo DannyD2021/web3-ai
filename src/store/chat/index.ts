@@ -2,7 +2,8 @@ import { useState, useRef } from 'react';
 import { createStore } from 'hox';
 import _ from 'underscore';
 import { fetchEventSource } from "@microsoft/fetch-event-source";
-import { LOCKED_QA } from '@/const';
+import { LOCKED_QA, WALLET_ADDRESS } from '@/const';
+import { getCookie } from '@/utils/cookies';
 
 export enum ChatTypes {
   SESSION,
@@ -153,6 +154,6 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     addNewMessage,
     chatloading,
     stopChat,
-    chatCounts
+    chatCounts,
   }
 })

@@ -39,7 +39,7 @@ const setCookie = (name: string, value: string, { domain, maxAge, path }: any = 
       }
     }
   //   for循环结束，也就终止执行
-  return
+  return ''
   };
   // 删除cookie意思也就是，继续调用setCookie，把过期时间设置为0
   const removeCookie = (name: string) => {

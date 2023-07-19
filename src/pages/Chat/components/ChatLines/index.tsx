@@ -32,6 +32,7 @@ import CopyToClipboardButton from "@/components/CopyToClickButton";
 import ChatModuleTitle from "../ChatModuleTitle";
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import { LOCKED_QA } from "@/const";
+import { useAccountStore } from "@/store";
 
 const ChatConfig: any = {
   ai: {
@@ -45,11 +46,11 @@ const ChatConfig: any = {
 };
 
 const MsgBlock = ({ msg, id }: { msg: MessageType, id: number }) => {
-  const { address, isConnected } = useAccount();
+  const { address } = useAccountStore();
   const { who, message, loading, type } = msg || {};
   const { content, messageId, chartIds = [], chartData } = message || {};
   const className = ChatConfig[who].className;
-  const showThumbs = isConnected && messageId && id > 1 && who === 'ai' && !loading;
+  const showThumbs = address && messageId && id > 1 && who === 'ai' && !loading;
   const [thumbs, setThumbs] = useState({
     thumbDown: false,
     thumbUp: false,

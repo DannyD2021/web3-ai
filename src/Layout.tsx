@@ -2,15 +2,18 @@ import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { Outlet, useNavigate } from "react-router-dom";
 
+import { ethers } from 'ethers';
 import { useWeb3Modal } from '@web3modal/react'
-import { useAccount } from 'wagmi';
+import { useAccount, useDisconnect } from 'wagmi';
 
 import { formatAddress } from '@/utils';
-import { setCookie, removeCookie } from '@/utils/cookies';
-import { WALLET_ADDRESS } from '@/const';
 import { isDesktop } from 'react-device-detect';
 import { MyProfileIcon, DisconnectIcon } from '@/components/icons';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
 // import Footer from '@/components/Footer';
+import { getAccountStore } from '@/store';
 import './global.css';
 
 
@@ -76,35 +79,74 @@ const HeaderContainer = styled.div<{ isDesktop?: boolean }>`
   }
 `
 
+const WallectConnectContainer = styled.div`
+  margin-top: 20px;
+  .wallet-icon {
+    width: 250px;
+    cursor: pointer;
+    &.metamask {
+      padding-bottom: 15px;
+      margin-left: 8px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(118, 134, 171, 0.15);
+    }
+    img {
+      width: 100%;
+    }
+  }
+`
+
 
 export default function Layout() {
   const navigate = useNavigate();
-  const { address, isConnected } = useAccount();
+  const { address, setAccountAddress } = getAccountStore() || {};
+  const { address: walletConnectAddress, isConnected } = useAccount();
+  const { disconnect } = useDisconnect();
   const [userMenuVisible, setUserMenuVisible] = useState(false);
   const { isOpen, open, close, setDefaultChain } = useWeb3Modal();
+  const [connectModalOpen, setConnectModalOpen] = useState(false);
   const handleConnect = () => {
-    if (!isConnected) {
-      open();
+    if (!address) {
+      setConnectModalOpen(true);
     } else {
-      setUserMenuVisible(!userMenuVisible);
+      setUserMenuVisible(true);
     }
   }
 
   const handleDisConnect = () => {
-    open();
+    setAccountAddress?.('');
+    disconnect();
     setUserMenuVisible(false);
   }
 
   useEffect(() => {
-    if (address) {
-      setCookie(WALLET_ADDRESS, address)
-    } else {
-      removeCookie(WALLET_ADDRESS);
+    if (walletConnectAddress) {
+      setAccountAddress?.(walletConnectAddress);
     }
-    return () => {
-      removeCookie(WALLET_ADDRESS);
+    // return () => {
+    //   removeCookie(WALLET_ADDRESS);
+    // }
+  }, [walletConnectAddress]);
+
+  const handleClose = () => {
+    setConnectModalOpen(false);
+  };
+
+  const handleConnectMetamask = async () => {
+    if (window.ethereum) {
+      const provider = new ethers.BrowserProvider(window.ethereum);
+
+      const accounts = await provider.send("eth_requestAccounts", []);
+      const activeAccount = accounts[0];
+      setAccountAddress?.(activeAccount);
+      handleClose();
     }
-  }, [address])
+  }
+
+  const handleConnectWalletConnect = () => {
+      open();
+      handleClose();
+  }
 
   return (
     <AppContainer>
@@ -128,6 +170,25 @@ export default function Layout() {
         </div>
       </HeaderContainer>
       <Outlet />
+      <Dialog
+        open={connectModalOpen}
+        onClose={handleClose}
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Connect Wallet"}
+        </DialogTitle>
+        <DialogContent>
+          <WallectConnectContainer>
+            <div className='wallet-icon metamask' onClick={handleConnectMetamask}>
+              <img src='wallet/metamask.png' />
+            </div>
+            <div className='wallet-icon' onClick={handleConnectWalletConnect}>
+              <img src='wallet/walletconnect.png' />
+            </div>
+          </WallectConnectContainer>
+        </DialogContent>
+      </Dialog>
     </AppContainer>
   );
 }

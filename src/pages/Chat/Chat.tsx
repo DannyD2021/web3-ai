@@ -14,6 +14,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useAccountStore } from "@/store";
 
 
 const ChatContainer = styled.div<{ isDesktop?: boolean }>`
@@ -85,13 +86,13 @@ const ChatButtonContainer = styled.div`
 
 const Chat = () => {
   const { chatMessages, inputMsg, setInputMsg, sendMessage, chatloading, stopChat, chatCounts } = useChatStore();
-  const { address, isConnected } = useAccount();
+  const { address } = useAccountStore();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const checkChatCounts = () => {
-    if (!isConnected && chatCounts > 3) {
+    if (!address && chatCounts > 3) {
       handleOpen();
       return;
     }
