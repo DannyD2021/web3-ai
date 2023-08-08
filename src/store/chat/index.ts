@@ -67,7 +67,7 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     setCookie(CHAT_COUNTS, String(count));
   }
 
-  const sendMessage = _.debounce(async (msg: any) => {
+  const sendMessage = _.debounce(async (msg: any, isValidChat) => {
     if (!msg || chatloading) return;
     ctrlRef.current = new AbortController();
     setChatLoading(true);
@@ -76,8 +76,10 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     const newUserMsg: MessageType = { message: { content: msg }, who: "user", type: ChatTypes.SESSION };
     const newAIMsg: MessageType = { message: { content: '' }, who: "ai", loading: true, type: ChatTypes.SESSION };
     addNewMessage([newUserMsg, newAIMsg]);
-    // add chat count +1
-    setChatCountsWithCookie(chatCounts + 1);
+    if (isValidChat) {
+      // add chat count +1
+      setChatCountsWithCookie(chatCounts + 1);
+    }
     // handle LockedQA
     if (msg === LOCKED_QA[0].title) {
       Object.assign(newAIMsg, {
@@ -160,5 +162,6 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     chatloading,
     stopChat,
     chatCounts,
+    setChatCountsWithCookie,
   }
 })
