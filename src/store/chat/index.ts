@@ -67,7 +67,7 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     setCookie(CHAT_COUNTS, String(count));
   }
 
-  const sendMessage = _.debounce(async (msg: any, isValidChat) => {
+  const sendMessage = _.debounce(async (msg: any, isValidChat?: boolean) => {
     if (!msg || chatloading) return;
     ctrlRef.current = new AbortController();
     setChatLoading(true);
