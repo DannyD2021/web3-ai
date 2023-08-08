@@ -2,8 +2,8 @@ import { useState, useRef } from 'react';
 import { createStore } from 'hox';
 import _ from 'underscore';
 import { fetchEventSource } from "@microsoft/fetch-event-source";
-import { LOCKED_QA, WALLET_ADDRESS } from '@/const';
-import { getCookie } from '@/utils/cookies';
+import { CHAT_COUNTS, LOCKED_QA, WALLET_ADDRESS } from '@/const';
+import { getCookie, setCookie } from '@/utils/cookies';
 
 export enum ChatTypes {
   SESSION,
@@ -47,7 +47,7 @@ class FatalError extends Error { };
 export const [useChatStore, ChatStoreProvider] = createStore(() => {
   const ctrlRef = useRef<any>(null);
   const [chatloading, setChatLoading] = useState(false);
-  const [chatCounts, setChatCounts] = useState(0);
+  const [chatCounts, setChatCounts] = useState(Number(getCookie(CHAT_COUNTS) || 0));
   const [chatMessages, setChatMessages] = useState(initialChats);
   const [inputMsg, setInputMsg] = useState("");
 
@@ -62,6 +62,11 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     });
   }
 
+  const setChatCountsWithCookie = (count: number) => {
+    setChatCounts(count);
+    setCookie(CHAT_COUNTS, String(count));
+  }
+
   const sendMessage = _.debounce(async (msg: any) => {
     if (!msg || chatloading) return;
     ctrlRef.current = new AbortController();
@@ -72,7 +77,7 @@ export const [useChatStore, ChatStoreProvider] = createStore(() => {
     const newAIMsg: MessageType = { message: { content: '' }, who: "ai", loading: true, type: ChatTypes.SESSION };
     addNewMessage([newUserMsg, newAIMsg]);
     // add chat count +1
-    setChatCounts(chatCounts + 1);
+    setChatCountsWithCookie(chatCounts + 1);
     // handle LockedQA
     if (msg === LOCKED_QA[0].title) {
       Object.assign(newAIMsg, {

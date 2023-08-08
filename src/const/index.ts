@@ -4,6 +4,7 @@ const isProd = process.env.NODE_ENV === 'production'
 export const ANALYTICS_HOST = '//test.3analytics.ai';
 
 export const WALLET_ADDRESS = 'WALLET_ADDRESS';
+export const CHAT_COUNTS = 'CHAT_COUNTS';
 
 export const  LOCKED_QA= [{
     title: 'How to get $WAI?',
