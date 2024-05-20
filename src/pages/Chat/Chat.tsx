@@ -101,7 +101,7 @@ const Chat = () => {
   const handleKeyDown = (event: any) => {
     checkChatCounts();
     if (event.key === 'Enter') {
-      sendMessage(inputMsg);
+      sendMessage(inputMsg, true);
     }
   }
 
@@ -110,7 +110,7 @@ const Chat = () => {
     if (chatloading) {
       stopChat();
     } else {
-      sendMessage(inputMsg);
+      sendMessage(inputMsg, true);
     }
   }
   return (
