@@ -33,7 +33,7 @@ export const initialChats: MessageType[] = [
       Discord: discord.com/invite/ZdWPpMG9bC
       Twitter: twitter.com/web3_analytics
       
-      Join our community to claim $WAI airdrop.
+      Currently, WAI/$WAI are both internet points that do not possess any trading/financial attributes. We do not promise that they will have any value in the future.
       `,
     },
     type: ChatTypes.SESSION
